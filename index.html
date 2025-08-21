@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Firm - Premium Performance Parts</title>
+    <!-- Tailwind CSS for utility-first styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - Inter for clean typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS (Animate on Scroll) for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         /* Custom styles for a luxurious feel */
@@ -28,7 +32,7 @@
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .card-hover:hover {
-            transform: translateY(-8px) rotate(-2deg); /* MODIFIED: Added rotate effect */
+            transform: translateY(-8px) rotate(-2deg); /* Added rotate effect */
             box-shadow: 0 30px 50px rgba(0,0,0,0.4), 0 0 20px rgba(255, 121, 63, 0.2);
         }
 
@@ -43,7 +47,6 @@
         /* Accent gradient for buttons and highlights */
         .accent-gradient {
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-            /* REMOVED: Bouncing animation and reduced opacity */
         }
         
         /* Hero image carousel styling */
@@ -59,8 +62,6 @@
             opacity: 0;
         }
         
-        /* REMOVED: Styles for header.scrolled */
-
         /* New card carousel styles for the 2x2 grid */
         .build-card {
             background-color: #1a1a1a;
@@ -72,7 +73,6 @@
             position: relative;
             height: 300px; /* Consistent height for all images */
             overflow: hidden;
-            /* REMOVED: background-color to show only the image */
         }
         .build-image-track {
             display: flex;
@@ -82,7 +82,7 @@
         .build-image {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 'contain' ensures the full image is shown */
+            object-fit: cover; /* 'cover' ensures the full image is shown */
             flex-shrink: 0;
         }
         .build-carousel-button {
@@ -97,7 +97,6 @@
             transition: background-color 0.3s;
             z-index: 10;
         }
-
         .build-carousel-button:hover {
             background-color: rgba(255, 255, 255, 0.4);
         }
@@ -107,11 +106,25 @@
         .build-carousel-button-next {
             right: 1rem;
         }
+        
+        /* Style for the blinking cursor */
+        .blinking-cursor {
+            font-weight: 300;
+            font-size: 1.25rem;
+            color: #f7931e;
+            animation: blink-caret .75s step-end infinite;
+        }
 
+        /* The typewriter effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #f7931e }
+        }
     </style>
 </head>
 <body class="bg-black text-white">
 
+    <!-- Header/Navigation -->
     <header id="main-header" class="fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
@@ -127,24 +140,27 @@
         </div>
     </header>
 
+    <!-- Hero Section with Image Carousel -->
     <section class="hero-gradient min-h-screen flex items-end justify-center relative overflow-hidden">
         <div id="hero-carousel" class="absolute inset-0">
+            <!-- Hero images with fallbacks -->
             <img src="https://mtr-performance.nl/cdn/shop/files/carousel-7-1920_1.jpg?v=1733390491&width=823" alt="Audi RS6 Avant" class="hero-image w-full h-full object-cover opacity-50 active" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Car';">
             <img src="https://smgmedia.blob.core.windows.net/blog/postimages/5973/00003.jpg" alt="Urban Defender" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+SUV';">
             <img src="https://r44performance.com/cdn/shop/articles/Modified-BMW-G90-M5_eace87d3-08b8-4d06-8c9c-c5d4960f5da7.jpg?v=1738920006&width=1000" alt="BMW M5" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Sports+Car';">
             <img src="https://vorsteiner.com/cdn/shop/files/07-Vorsteiner-Raptor-R-min_84618c70-b740-4439-bdbb-c5da7507ab14.jpg?v=1738708930&width=2000" alt="Ford Raptor" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">
 	    <img src="https://www.abt-america.com/fileadmin/_processed_/b/8/csm_Z_RSQ8-S_nardograu-13_39cfc25d8b.jpg" alt="Audi RSQ8" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">            
 	    <img src="https://www.porschenorthhouston.com/static/dealer-12179/911_GT3_Manthey_Performance.webp" alt="Porsche" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">
-	<!-- REMOVED: Gradient overlay div for the hero section -->
         </div>
         <div class="relative z-10 text-center max-w-6xl mx-auto px-4 pb-24">
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Custom cars, trucks, and SUV</p>
+            <!-- This paragraph will now be dynamically typed by JavaScript -->
+            <p id="hero-text-dynamic" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></p>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                  <a href="#parts" class="accent-gradient text-black px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity text-lg inline-block transform hover:scale-105">EXPLORE PARTS</a>
             </div>
         </div>
     </section>
 
+    <!-- Performance Categories Section -->
     <section id="parts" class="py-24 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">Performance Categories</h2>
@@ -160,7 +176,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-80 bg-contain bg-center bg-no-repeat" style="background-image: url('https://cdn4.volusion.store/jscey-hhylf/v/vspfiles/photos/227.101-2.jpg?v-cache=1561568177')">
                         <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
@@ -171,7 +186,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-80 bg-contain bg-center bg-no-repeat" style="background-image: url('https://cdn11.bigcommerce.com/s-18gay/images/stencil/1280x1280/products/624/29136/bk0019_kit__96929.1710619116.jpg?c=2')">
                         <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
@@ -182,7 +196,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-80 bg-contain bg-center bg-no-repeat" style="background-image: url('https://tse3.mm.bing.net/th/id/OIP.rqPtXM-qSHsXg-9gqZv8QgHaLH?w=720&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3')">
                         <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
@@ -203,7 +216,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-80 bg-contain bg-center bg-no-repeat" style="background-image: url('https://europeanautosource.com/cdn/shop/files/DSC02546-Edit-scaled.webp?v=1740439653&width=1920')">
                         <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
@@ -214,7 +226,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-80 bg-contain bg-center bg-no-repeat" style="background-image: url('https://specialtyperformanceparts.com/cdn/shop/products/27001.Ford_Raptor_1619_XB_LED_Headlights.160.jpg?v=1613420570')">
                         <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
@@ -225,7 +236,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-80 bg-contain bg-center bg-no-repeat" style="background-image: url('https://www.tegiwaimports.com/blog/wp-content/uploads/2015/04/defi-02.jpg')">
                         <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
@@ -240,18 +250,22 @@
         </div>
     </section>
 
+    <!-- Featured Builds Section with Carousels -->
     <section id="gallery" class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">Featured Builds</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Porsche 911 GT3 Build -->
+                <!-- Porsche 911 GT3 Build with multiple images -->
                 <div class="build-card" data-aos="fade-up" data-aos-delay="100">
                     <div id="porsche-carousel" class="build-image-container relative">
                         <div class="build-image-track flex">
                             <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3" class="build-image">
                             <img src="https://images.unsplash.com/photo-1594917631316-24e0b04c862c?q=80&w=2874&auto=format&fit=crop" alt="Porsche 911 GT3 Interior" class="build-image">
                             <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3 Rear" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1650304677764-589f816c7f82?q=80&w=2787&auto=format&fit=crop" alt="Porsche 911 GT3 front" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3 side" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1652702202685-61f237f37435?q=80&w=2800&auto=format&fit=crop" alt="Porsche 911 GT3 interior" class="build-image">
                         </div>
                         <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
                         <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
@@ -267,13 +281,16 @@
                     </div>
                 </div>
 
-                <!-- Audi RS6 Avant Build -->
+                <!-- Audi RS6 Avant Build with multiple images -->
                 <div class="build-card" data-aos="fade-up" data-aos-delay="200">
                     <div id="audi-carousel" class="build-image-container relative">
                         <div class="build-image-track flex">
-                            <img src="https://github.com/jayzce/AutoFirm/blob/main/Assets/Audi%20RS6%20h.jpg?v=1733390491&width=823" alt="Audi RS6 Avant" class="build-image">
-                            <img src="https://github.com/jayzce/AutoFirm/blob/main/Assets/Audi%20RS6.jpg=80&w=2940&auto=format&fit=crop" alt="Audi RS6 Avant Interior" class="build-image">
-                            <img src="https://github.com/jayzce/AutoFirm/blob/main/Assets/Audi%20RS6%20a.jpg=80&w=2940&auto=format&fit=crop" alt="Audi RS6 Avant Engine" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20h.jpg" alt="Audi RS6 Avant" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6.jpg" alt="Audi RS6 Avant Interior" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20a.jpg" alt="Audi RS6 Avant Engine" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Audi%20RS6.jpg?raw=true" alt="Audi RS6 Avant rear" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20i.jpg?raw=true" alt="Audi RS6 Avant front" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20g.jpg?raw=true" alt="Audi RS6 Avant side" class="build-image">
                         </div>
                         <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
                         <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
@@ -289,34 +306,40 @@
                     </div>
                 </div>
 
-                <!-- AMG G63 Build -->
+                <!-- AMG G63 Build with multiple images -->
                 <div class="build-card" data-aos="fade-up" data-aos-delay="300">
                     <div id="amg-carousel" class="build-image-container relative">
                         <div class="build-image-track flex">
                             <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit=crop" alt="Mercedes-AMG G63" class="build-image">
                             <img src="https://images.unsplash.com/photo-1631405102061-0b5c179d63f2?q=80&w=2940&auto=format&fit=crop" alt="Mercedes-AMG G63 Interior" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit=crop" alt="Mercedes-AMG G63 Rear" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit-crop" alt="Mercedes-AMG G63 Rear" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit-crop" alt="Mercedes-AMG G63 Rear" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1631405102061-0b5c179d63f2?q=80&w=2940&auto=format&fit-crop" alt="Mercedes-AMG G63 Interior" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit-crop" alt="Mercedes-AMG G63 Rear" class="build-image">
                         </div>
                         <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
                         <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="p-8">
                         <h3 class="text-3xl font-bold mb-4">AMG G63</h3>
-                        <p class="text-gray-300 mb-6 text-lg">Off-road prowess with a touch of luxury. Our G-Wagon build includes a full wide-body kit, custom off-road tires, and interior enhancements.</p>
+                        <p class="text-gray-300 mb-6 text-lg">Off-road prowess with a touch of luxury. Our G-Wagon build includes a full wide-body kit, custom wheels & tires, and exhaust.</p>
                         <div class="space-y-3">
                             <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Wide Body Kit</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Custom Off-Road Wheels</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Interior Enhancements</span></div>
+                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Custom Wheels & Tires</span></div>
+                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Exhaust</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Range Rover Build -->
+                <!-- Range Rover Build with multiple images -->
                 <div class="build-card" data-aos="fade-up" data-aos-delay="400">
                     <div id="rangerover-carousel" class="build-image-container relative">
                         <div class="build-image-track flex">
-                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Range Rover Vogue" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1594917631316-24e0b04c862c?q=80&w=2874&auto=format&fit=crop" alt="Range Rover Interior" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true=80&w=2864&auto=format&fit=crop" alt="Range Rover Vogue" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Range%20Rover%20a.jpg?raw=true=80&w=2874&auto=format&fit=crop" alt="Range Rover Interior" class="build-image">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Range%20Rover%20c.jpg?raw=true=80&w=2864&auto=format&fit-crop" alt="Range Rover Rear" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1626490606626-d621931557d1?q=80&w=2832&auto=format&fit=crop" alt="Range Rover Front" class="build-image">
+                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Range Rover Side" class="build-image">
                             <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit-crop" alt="Range Rover Rear" class="build-image">
                         </div>
                         <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
@@ -337,6 +360,7 @@
     </section>
 
 
+    <!-- Contact Section -->
     <section id="contact" class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12" data-aos="fade-up">
@@ -350,20 +374,17 @@
                     </button>
                 </form>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center" data-aos="fade-up" data-aos-delay="200">
                 <div>
                     <i class="fas fa-map-marker-alt text-3xl text-orange-400 mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">LOCATION</h3>
                     <p class="text-gray-400">Serra Monte Villas<br>Quezon City, 1126</p>
                 </div>
-
                 <div>
                     <i class="fas fa-phone text-3xl text-orange-400 mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">CONTACT</h3>
                     <p class="text-gray-400">Phone: (0992) 868-7788<br>Email: info@autofirm.com</p>
                 </div>
-
                 <div>
                     <i class="fas fa-clock text-3xl text-orange-400 mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">HOURS</h3>
@@ -373,32 +394,31 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-black py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-2xl font-bold text-gradient tracking-wider mb-6 md:mb-0">AUTO FIRM</div>
-
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-instagram text-2xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-facebook text-2xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-youtube text-2xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-tiktok text-2xl"></i></a>
+                    <a href="https://www.instagram.com/aftermarketautoparts/" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="https://www.facebook.com/aftermarketautopartsaccessories/" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-facebook text-2xl"></i></a>
+                    <a href="https://www.youtube.com/@Jayzce" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-youtube text-2xl"></i></a>
+                    <a href="https://www.tiktok.com/@aftermarketautoparts" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-tiktok text-2xl"></i></a>
                 </div>
             </div>
-
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-                <p>&copy; 2024 Auto Firm. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p>&copy; 2025 Auto Firm. All rights reserved. | Privacy Policy | Terms of Service</p>
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
+        // Initialize AOS library for scroll animations
         AOS.init({
-            once: true, // Whether animation should happen only once - while scrolling down
-            duration: 800, // values from 0 to 3000, with step 50ms
-            easing: 'ease-in-out', // default easing for AOS animations
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out',
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -411,13 +431,40 @@
                 currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
                 heroImages[currentHeroImageIndex].classList.add('active');
             };
-
             setInterval(changeHeroImage, 8000); // Change image every 8 seconds
+            
+            // --- Typewriter Effect for Hero Text ---
+            const heroTextElement = document.getElementById('hero-text-dynamic');
+            const heroText = "Custom cars, trucks, and SUV";
+            let i = 0;
 
-            // --- REMOVED: Header Scroll Effect ---
-            // The functionality to add a scrolled class to the header has been removed.
+            function typeWriter() {
+                if (i < heroText.length) {
+                    heroTextElement.textContent += heroText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50); // Typing speed
+                } else {
+                    // Start the 'un-typing' effect after a pause
+                    setTimeout(untypeWriter, 2000); // Pause before deleting
+                }
+            }
 
-            // --- Featured Builds 2x2 Image Carousels ---
+            function untypeWriter() {
+                if (heroTextElement.textContent.length > 0) {
+                    // Remove the last character
+                    heroTextElement.textContent = heroTextElement.textContent.slice(0, -1);
+                    setTimeout(untypeWriter, 25); // Un-typing speed
+                } else {
+                    // Reset and start typing again after clearing the text
+                    i = 0;
+                    setTimeout(typeWriter, 500); // Pause before typing again
+                }
+            }
+
+            // Start the typewriter effect
+            typeWriter();
+
+            // --- Featured Builds Carousels ---
             
             // Function to initialize a single image carousel
             const setupCarousel = (carouselId) => {
