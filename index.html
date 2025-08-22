@@ -61,52 +61,76 @@
         .hero-image:not(.active) {
             opacity: 0;
         }
+
+        /* Masonry gallery styling for images */
+        .masonry-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-bottom: 2rem; /* mb-8 */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            /* Prevents image from breaking across columns in some browsers */
+            -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+            break-inside: avoid-column;
+        }
+        .masonry-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
         
-        /* New card carousel styles for the 2x2 grid */
-        .build-card {
-            background-color: #1a1a1a;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-        .build-image-container {
-            position: relative;
-            height: 300px; /* Consistent height for all images */
-            overflow: hidden;
-        }
-        .build-image-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .build-image {
+        /* Modal Overlay for Full-screen Image View */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 'cover' ensures the full image is shown */
-            flex-shrink: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
-        .build-carousel-button {
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Adjusted the modal content to use fluid viewport units */
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .modal-close {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 0.75rem;
-            border-radius: 50%;
-            backdrop-filter: blur(5px);
-            transition: background-color 0.3s;
-            z-index: 10;
-        }
-        .build-carousel-button:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
-        .build-carousel-button-prev {
-            left: 1rem;
-        }
-        .build-carousel-button-next {
+            top: 1rem;
             right: 1rem;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 101;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
         }
-        
+        .modal-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
         /* Style for the blinking cursor */
         .blinking-cursor {
             font-weight: 300;
@@ -146,7 +170,7 @@
             <!-- Hero images with fallbacks -->
             <img src="https://mtr-performance.nl/cdn/shop/files/carousel-7-1920_1.jpg?v=1733390491&width=823" alt="Audi RS6 Avant" class="hero-image w-full h-full object-cover opacity-50 active" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Car';">
             <img src="https://smgmedia.blob.core.windows.net/blog/postimages/5973/00003.jpg" alt="Urban Defender" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+SUV';">
-            <img src="https://r44performance.com/cdn/shop/articles/Modified-BMW-G90-M5_eace87d3-08b8-4d06-8c9c-c5d4960f5da7.jpg?v=1738920006&width=1000" alt="BMW M5" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Sports+Car';">
+            <img src="https://r44performance.com/cdn/shop/articles/Modified-BMW-G90-M5_eace87d3-08b8-4d06-8c9c-c5da5da7.jpg?v=1738920006&width=1000" alt="BMW M5" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Sports+Car';">
             <img src="https://vorsteiner.com/cdn/shop/files/07-Vorsteiner-Raptor-R-min_84618c70-b740-4439-bdbb-c5da7507ab14.jpg?v=1738708930&width=2000" alt="Ford Raptor" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">
 	    <img src="https://www.abt-america.com/fileadmin/_processed_/b/8/csm_Z_RSQ8-S_nardograu-13_39cfc25d8b.jpg" alt="Audi RSQ8" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">            
 	    <img src="https://www.porschenorthhouston.com/static/dealer-12179/911_GT3_Manthey_Performance.webp" alt="Porsche" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">
@@ -250,116 +274,48 @@
         </div>
     </section>
 
-    <!-- Featured Builds Section with Carousels -->
+    <!-- Featured Builds Section with Masonry Gallery -->
     <section id="gallery" class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">Featured Builds</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">Featured Builds Gallery</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Porsche 911 GT3 Build with multiple images -->
-                <div class="build-card" data-aos="fade-up" data-aos-delay="100">
-                    <div id="porsche-carousel" class="build-image-container relative">
-                        <div class="build-image-track flex">
-                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1594917631316-24e0b04c862c?q=80&w=2874&auto=format&fit=crop" alt="Porsche 911 GT3 Interior" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3 Rear" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1650304677764-589f816c7f82?q=80&w=2787&auto=format&fit=crop" alt="Porsche 911 GT3 front" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3 side" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1652702202685-61f237f37435?q=80&w=2800&auto=format&fit=crop" alt="Porsche 911 GT3 interior" class="build-image">
-                        </div>
-                        <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">Porsche 911 GT3</h3>
-                        <p class="text-gray-300 mb-6 text-lg">A track-focused beast with a complete carbon fiber body kit, performance exhaust, and custom forged wheels for the ultimate driving experience.</p>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Full Carbon Fiber Body Kit</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Performance Exhaust System</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Custom Forged Wheels</span></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="columns-2 lg:columns-3 gap-8">
+                <!-- All Gallery Images Consolidated Here -->
+                <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Porsche 911 GT3" class="masonry-image" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1594917631316-24e0b04c862c?q=80&w=2874&auto=format&fit=crop" alt="Porsche 911 GT3 Interior" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1650304677764-589f816c7f82?q=80&w=2787&auto=format&fit=crop" alt="Porsche 911 GT3 front" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1652702202685-61f237f37435?q=80&w=2800&auto=format&fit=crop" alt="Porsche 911 GT3 interior" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
 
-                <!-- Audi RS6 Avant Build with multiple images -->
-                <div class="build-card" data-aos="fade-up" data-aos-delay="200">
-                    <div id="audi-carousel" class="build-image-container relative">
-                        <div class="build-image-track flex">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20h.jpg" alt="Audi RS6 Avant" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6.jpg" alt="Audi RS6 Avant Interior" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20a.jpg" alt="Audi RS6 Avant Engine" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Audi%20RS6.jpg?raw=true" alt="Audi RS6 Avant rear" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20i.jpg?raw=true" alt="Audi RS6 Avant front" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20g.jpg?raw=true" alt="Audi RS6 Avant side" class="build-image">
-                        </div>
-                        <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">Audi RS6 Avant</h3>
-                        <p class="text-gray-300 mb-6 text-lg">The perfect blend of utility and raw power. This build features upgraded suspension, custom downpipes, and a complete aesthetic package.</p>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Urban Carbon bodykit</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Full Exhaust System</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Vossen Wheels</span></div>
-                        </div>
-                    </div>
-                </div>
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20h.jpg" alt="Audi RS6 Avant" class="masonry-image" data-aos="fade-up" data-aos-delay="0">
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6.jpg" alt="Audi RS6 Avant Interior" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20a.jpg" alt="Audi RS6 Avant Engine" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20g.jpg?raw=true" alt="Audi RS6 Avant side" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
 
-                <!-- AMG G63 Build with multiple images -->
-                <div class="build-card" data-aos="fade-up" data-aos-delay="300">
-                    <div id="amg-carousel" class="build-image-container relative">
-                        <div class="build-image-track flex">
-                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit=crop" alt="Mercedes-AMG G63" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1631405102061-0b5c179d63f2?q=80&w=2940&auto=format&fit=crop" alt="Mercedes-AMG G63 Interior" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit-crop" alt="Mercedes-AMG G63 Rear" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit-crop" alt="Mercedes-AMG G63 Rear" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1631405102061-0b5c179d63f2?q=80&w=2940&auto=format&fit-crop" alt="Mercedes-AMG G63 Interior" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit-crop" alt="Mercedes-AMG G63 Rear" class="build-image">
-                        </div>
-                        <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">AMG G63</h3>
-                        <p class="text-gray-300 mb-6 text-lg">Off-road prowess with a touch of luxury. Our G-Wagon build includes a full wide-body kit, custom wheels & tires, and exhaust.</p>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Wide Body Kit</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Custom Wheels & Tires</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Exhaust</span></div>
-                        </div>
-                    </div>
-                </div>
+                <img src="https://images.unsplash.com/photo-1622320476839-4d6d63499119?q=80&w=2864&auto=format&fit=crop" alt="Mercedes-AMG G63" class="masonry-image" data-aos="fade-up" data-aos-delay="0">
+                <img src="https://images.unsplash.com/photo-1631405102061-0b5c179d63f2?q=80&w=2940&auto=format&fit=crop" alt="Mercedes-AMG G63 Interior" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true=80&w=2864&auto=format&fit=crop" alt="Range Rover Vogue" class="masonry-image" data-aos="fade-up" data-aos-delay="0">
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Range%20Rover%20a.jpg?raw=true=80&w=2874&auto=format&fit-crop" alt="Range Rover Interior" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Range%20Rover%20c.jpg?raw=true=80&w=2864&auto=format&fit-crop" alt="Range Rover Rear" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1626490606626-d621931557d1?q=80&w=2832&auto=format&fit=crop" alt="Range Rover Front" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
 
-                <!-- Range Rover Build with multiple images -->
-                <div class="build-card" data-aos="fade-up" data-aos-delay="400">
-                    <div id="rangerover-carousel" class="build-image-container relative">
-                        <div class="build-image-track flex">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true=80&w=2864&auto=format&fit=crop" alt="Range Rover Vogue" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Range%20Rover%20a.jpg?raw=true=80&w=2874&auto=format&fit=crop" alt="Range Rover Interior" class="build-image">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Range%20Rover%20c.jpg?raw=true=80&w=2864&auto=format&fit-crop" alt="Range Rover Rear" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1626490606626-d621931557d1?q=80&w=2832&auto=format&fit=crop" alt="Range Rover Front" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Range Rover Side" class="build-image">
-                            <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit-crop" alt="Range Rover Rear" class="build-image">
-                        </div>
-                        <button class="build-carousel-button build-carousel-button-prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="build-carousel-button build-carousel-button-next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-bold mb-4">Range Rover</h3>
-                        <p class="text-gray-300 mb-6 text-lg">Our custom Range Rover build is designed for ultimate comfort and presence. It includes a custom body kit, upgraded interior trim, and new forged wheels.</p>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Custom Body Kit</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>Interior Trim Upgrades</span></div>
-                            <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-orange-400"></i><span>New Forged Wheels</span></div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Images from the old Page 2 -->
+                <img src="https://images.unsplash.com/photo-1617478330752-64af922b9195?q=80&w=2832&auto=format&fit=crop" alt="Mazda RX7" class="masonry-image" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1616421233882-d3c56a8157e9?q=80&w=2864&auto=format&fit=crop" alt="Mercedes-Benz E-Class" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1616259468925-5f21295b92f7?q=80&w=2832&auto=format&fit=crop" alt="Nissan Skyline" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1594917631316-24e0b04c862c?q=80&w=2874&auto=format&fit=crop" alt="Mercedes-AMG C-Class" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1617181057984-c89b251493b8?q=80&w=2832&auto=format&fit=crop" alt="Nissan R34" class="masonry-image" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1615555419902-8411d332612a?q=80&w=2832&auto=format&fit-crop" alt="BMW M4" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1606775797379-915003ae31d6?q=80&w=2832&auto=format&fit=crop" alt="Ford Mustang" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1617457754388-755a9b1c7a77?q=80&w=2832&auto=format&fit=crop" alt="Lexus ISF" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1616259468925-5f21295b92f7?q=80&w=2832&auto=format&fit=crop" alt="Toyota Supra" class="masonry-image" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1606775797379-915003ae31d6?q=80&w=2832&auto=format&fit=crop" alt="Subaru WRX" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1617478330752-64af922b9195?q=80&w=2832&auto=format&fit=crop" alt="Honda Civic" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1616259468925-5f21295b92f7?q=80&w=2832&auto=format&fit=crop" alt="Nissan 370Z" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
             </div>
         </div>
     </section>
-
-
+    
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -411,6 +367,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Full-screen Image Modal -->
+    <div id="image-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modal-image" src="" alt="Maximized view" class="modal-image rounded-lg shadow-2xl">
+        </div>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -464,47 +428,31 @@
             // Start the typewriter effect
             typeWriter();
 
-            // --- Featured Builds Carousels ---
-            
-            // Function to initialize a single image carousel
-            const setupCarousel = (carouselId) => {
-                const carouselContainer = document.getElementById(carouselId);
-                const track = carouselContainer.querySelector('.build-image-track');
-                const images = track.querySelectorAll('.build-image');
-                const prevButton = carouselContainer.querySelector('.build-carousel-button-prev');
-                const nextButton = carouselContainer.querySelector('.build-carousel-button-next');
+            // --- Gallery Image Maximization ---
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalClose = document.querySelector('.modal-close');
+            const galleryImages = document.querySelectorAll('.masonry-image');
 
-                let currentIndex = 0;
+            // Open the modal when a gallery image is clicked
+            galleryImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    modalImage.src = image.src;
+                    modal.classList.add('open');
+                });
+            });
 
-                const showImage = (index) => {
-                    const imageWidth = images[0].clientWidth;
-                    track.style.transform = `translateX(-${index * imageWidth}px)`;
-                };
+            // Close the modal when the close button is clicked
+            modalClose.addEventListener('click', () => {
+                modal.classList.remove('open');
+            });
 
-                const prevSlide = () => {
-                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-                    showImage(currentIndex);
-                };
-
-                const nextSlide = () => {
-                    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-                    showImage(currentIndex);
-                };
-
-                prevButton.addEventListener('click', prevSlide);
-                nextButton.addEventListener('click', nextSlide);
-
-                // Initial setup for responsiveness
-                window.addEventListener('resize', () => showImage(currentIndex));
-                showImage(currentIndex);
-            };
-
-            // Initialize all featured build carousels
-            setupCarousel('porsche-carousel');
-            setupCarousel('audi-carousel');
-            setupCarousel('amg-carousel');
-            setupCarousel('rangerover-carousel');
-
+            // Close the modal when clicking outside the image
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('open');
+                }
+            });
         });
     </script>
 </body>
