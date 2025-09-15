@@ -193,11 +193,8 @@
     
     <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0">
-            <!-- Full-screen video background -->
-            <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-black-audi-rs-6-car-driving-in-the-city-at-night-5431-large.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <!-- Full-screen image background -->
+            <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Taycan.png?raw=true" alt="Porsche Taycan with aftermarket parts" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
         </div>
         
@@ -340,6 +337,20 @@
         </div>
     </footer>
 
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-lg p-8 max-w-sm w-full relative transform scale-100 transition-all duration-300 ease-out shadow-2xl">
+            <button id="closeModalButton" class="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center">
+                <i class="fas fa-check-circle text-orange-400 text-5xl mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">You’re all set!</h3>
+                <p class="text-gray-300">Thanks for joining — exclusive deals and updates are headed your way!</p>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -368,11 +379,24 @@
         const statusMessage = document.getElementById('statusMessage');
         const emailInput = document.getElementById('emailInput');
         const subscribeButton = document.getElementById('subscribeButton');
+        const successModal = document.getElementById('successModal');
+        const closeModalButton = document.getElementById('closeModalButton');
 
         function showMessage(message, isError = false) {
             statusMessage.textContent = message;
             statusMessage.classList.remove('text-green-400', 'text-red-400');
             statusMessage.classList.add(isError ? 'text-red-400' : 'text-green-400');
+        }
+
+        function showSuccessModal() {
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+            emailInput.value = ''; // Clear the input field
+        }
+        
+        function hideSuccessModal() {
+            successModal.classList.add('hidden');
+            successModal.classList.remove('flex');
         }
 
         async function initFirebase() {
@@ -444,13 +468,29 @@
                     timestamp: serverTimestamp()
                 });
 
-                showMessage('Thank you for subscribing!', false);
-                emailInput.value = ''; // Clear the input field
+                showSuccessModal();
                 console.log('Successfully saved email with ID:', docRef.id);
 
             } catch (error) {
                 showMessage('Subscription failed. Please try again.', true);
                 console.error('Error adding document:', error);
+            }
+        });
+
+        // Hide modal when the close button is clicked
+        closeModalButton.addEventListener('click', hideSuccessModal);
+
+        // Hide modal when the backdrop is clicked
+        successModal.addEventListener('click', (e) => {
+            if (e.target.id === 'successModal') {
+                hideSuccessModal();
+            }
+        });
+
+        // Hide modal when the 'Escape' key is pressed
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideSuccessModal();
             }
         });
     </script>
