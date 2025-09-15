@@ -1,454 +1,452 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Firm - Premium Performance Parts</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Aftermarket Auto Parts - Your Performance Parts Source</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for a luxurious feel */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a; /* Slightly off-black for a softer look */
-            color: #f1f1f1;
         }
-
-        /* Gradient for hero section and other key areas */
         .hero-gradient {
-            background: linear-gradient(135deg, #111111 0%, #222222 50%, #111111 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
         }
-
-        /* Enhanced card hover effect with a subtle glow */
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s ease;
         }
         .card-hover:hover {
-            transform: translateY(-8px) rotate(-2deg); /* Added rotate effect */
-            box-shadow: 0 30px 50px rgba(0,0,0,0.4), 0 0 20px rgba(255, 121, 63, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-
-        /* Gradient text for headings */
         .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        /* Accent gradient for buttons and highlights */
         .accent-gradient {
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
         }
-        
-        /* Hero image carousel styling */
-        .hero-image {
-            transition: opacity 1.5s ease-in-out, transform 8s ease-in-out;
-            transform: scale(1.05); /* Start slightly zoomed in */
-        }
-        .hero-image.active {
-            opacity: 1;
-            transform: scale(1); /* Zoom out to normal on active */
-        }
-        .hero-image:not(.active) {
-            opacity: 0;
+
+        /* 3D Flip Card CSS */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 256px; /* h-64 in Tailwind CSS is 16rem = 256px */
+            perspective: 1000px;
         }
 
-        /* Masonry gallery styling for images */
-        .masonry-image {
+        .flip-card-inner {
+            position: relative;
             width: 100%;
-            height: auto;
-            border-radius: 0.5rem; /* rounded-lg */
-            margin-bottom: 2rem; /* mb-8 */
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.5rem; /* rounded-lg in Tailwind */
+            overflow: hidden;
+        }
+
+        .flip-card-back {
+            background-color: #1f2937; /* bg-gray-800 */
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1.5rem; /* p-6 */
+        }
+
+        .flip-card-back ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        /* About Us Section Background */
+        #about {
+            position: relative;
+            overflow: hidden; /* Ensures the pseudo-element doesn't spill out */
+        }
+
+        #about::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/75481751_10158099927382080_6721169792952172544_o.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1; /* Set opacity to 10% */
+            z-index: 0; /* Behind the content */
+        }
+
+        /* Ensure content is above the background */
+        #about .max-w-7xl {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Bento Box CSS */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 1.5rem;
+        }
+
+        .bento-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            /* Prevents image from breaking across columns in some browsers */
-            -webkit-column-break-inside: avoid;
-            page-break-inside: avoid;
-            break-inside: avoid-column;
+            cursor: pointer;
         }
-        .masonry-image:hover {
+
+        .bento-item:hover {
             transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
-        
-        /* Modal Overlay for Full-screen Image View */
-        .modal-overlay {
-            position: fixed;
+
+        .bento-item video {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            object-fit: cover;
+            z-index: 0;
+            transition: opacity 0.3s ease-in-out;
+            display: none; /* Initially hide the video */
         }
-        .modal-overlay.open {
-            opacity: 1;
-            visibility: visible;
+
+        .bento-item:hover video {
+            display: block; /* Show video on hover */
         }
-        /* Adjusted the modal content to use fluid viewport units */
-        .modal-content {
+
+        .bento-content {
             position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
+            z-index: 1;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
         }
-        .modal-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .modal-close {
+
+        .video-overlay {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 101;
-            background: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            width: 2.5rem;
-            height: 2.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        .modal-close:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        /* Style for the blinking cursor */
-        .blinking-cursor {
-            font-weight: 300;
-            font-size: 1.25rem;
-            color: #f7931e;
-            animation: blink-caret .75s step-end infinite;
+        .bento-item:hover .video-overlay {
+            opacity: 0;
         }
 
-        /* The typewriter effect */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #f7931e }
+        /* Responsive grid sizes */
+        @media (min-width: 768px) {
+            .md\:col-span-2 {
+                grid-column: span 2 / span 2;
+            }
+            .md\:row-span-2 {
+                grid-row: span 2 / span 2;
+            }
         }
     </style>
 </head>
-<body class="bg-black text-white">
-
-    <header id="main-header" class="fixed w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="text-2xl font-bold text-gradient tracking-wider">AUTO FIRM</div>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#parts" class="hover:text-orange-400 transition-colors duration-300">PARTS</a>
-                    <a href="#gallery" class="hover:text-orange-400 transition-colors duration-300">BUILDS</a>
-                    <a href="#contact" class="hover:text-orange-400 transition-colors duration-300">CONTACT</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero-gradient min-h-screen flex items-end justify-center relative overflow-hidden">
-        <div id="hero-carousel" class="absolute inset-0">
-            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/RS6%20Urban.jpg?raw=true=1733390491&width=823" alt="Audi RS6 Avant" class="hero-image w-full h-full object-cover opacity-50 active" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Car';">
-             <img src="https://www.abt-america.com/fileadmin/_processed_/b/8/csm_Z_RSQ8-S_nardograu-13_39cfc25d8b.jpg" alt="Audi RSQ8" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Audi RSQ8';">
-			<img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urabn%20D110.jpg?raw=true" alt="Urban Defender" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+SUV';">
-            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Mercedes%20G63%20AMG.jpg?raw=true=1738920006&width=1000" alt="G63 AMG" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Sports+Car';">
-            <img src="https://vorsteiner.com/cdn/shop/files/07-Vorsteiner-Raptor-R-min_84618c70-b740-4439-bdbb-c5da7507ab14.jpg?v=1738708930&width=2000" alt="Ford Raptor" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">
-	    	<img src="https://www.porschenorthhouston.com/static/dealer-12179/911_GT3_Manthey_Performance.webp" alt="Porsche" class="hero-image w-full h-full object-cover opacity-50 absolute top-0 left-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Auto+Firm+Porsche';">
-			
-        </div>
-        <div class="relative z-10 text-center max-w-6xl mx-auto px-4 pb-24">
-            <p id="hero-text-dynamic" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></p>
-            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                 <a href="#parts" class="accent-gradient text-black px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity text-lg inline-block transform hover:scale-105">EXPLORE</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="parts" class="py-24 bg-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">Performance Categories</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="0">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Bodykit.jpg?raw=true')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">AERO BODY KITS</h3>
-                                <p class="text-gray-400">Dry & Wet Carbon Aero Kit</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('Suspension.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">SUSPENSION</h3>
-                                <p class="text-gray-400">Coilovers Sway Bars</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Big%20Brakes.jpg?raw=true')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">BRAKE SYSTEMS</h3>
-                                <p class="text-gray-400">Big Brake Kits</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Forged%20Wheels.jpg?raw=true')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">FORGED WHEELS</h3>
-                                <p class="text-gray-400">Multi Piece & Custom Finishes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="0">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Cold%20Air%20Intake.jpg?raw=true')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                           <div>
-                                <h3 class="text-xl font-bold mb-1">COLD AIR INTAKE</h3>
-                                <p class="text-gray-400">Enhanced Airflow</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://europeanautosource.com/cdn/shop/files/DSC02546-Edit-scaled.webp?v=1740439653&width=1920')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">EXHAUST SYSTEMS</h3>
-                                <p class="text-gray-400">Performance Sound</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://specialtyperformanceparts.com/cdn/shop/products/27001.Ford_Raptor_1619_XB_LED_Headlights.160.jpg?v=1613420570')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">LED LIGHTING</h3>
-                                <p class="text-gray-400">Custom Illumination</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-cover bg-center bg-no-repeat" style="width: 300px; height: 250px; background-image: url('https://www.tegiwaimports.com/blog/wp-content/uploads/2015/04/defi-02.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-xl font-bold mb-1">GAUGES</h3>
-                                <p class="text-gray-400">Precision Monitoring</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="py-24 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">Gallery</h2>
-            
-            <div class="columns-2 lg:columns-3 gap-8">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true=80&w=2864&auto=format&fit=crop" alt="Range Rover" class="masonry-image" data-aos="fade-up">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6%20h.jpg?raw=true=80&w=2874&auto=format&fit=crop" alt="Audi RS6" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/911%20Manthey.jpg?raw=true=80&w=2787&auto=format&fit=crop" alt="Porsche 911 GT3 front" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/AMG%20G63%20Feature%20build%201.jpg?raw=true=80&w=2800&auto=format&fit=crop" alt="Porsche 911 GT3 interior" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
-
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Cullinan%201016.jpg?raw=true" alt="Audi RS6 Avant" class="masonry-image" data-aos="fade-up" data-aos-delay="0">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS6.jpg" alt="Audi RS6 Avant Interior" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Taycan.png?raw=true" alt="Porsche Taycan" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/SnapInsta.to_504244906_18513696874006605_4432261198562620489_n.jpg?raw=trueraw=true" alt="Range Rover Sport" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
-
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/AMG%20G63%20Urban.jpg?raw=true=80&w=2864&auto=format&fit=crop" alt="Mercedes-AMG G63" class="masonry-image" data-aos="fade-up" data-aos-delay="0">
-                <img src="https://github.com/jayzce/AutoFirm/blob/main/Assets/BMW%20XM.jpg?raw=true=80&w=2940&auto=format&fit=crop" alt="BMW XM" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/bmwM3.png?raw=true=80&w=2864&auto=format&fit=crop" alt="Adro BMW M3 Coupe" class="masonry-image" data-aos="fade-up" data-aos-delay="0">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Supra%20Varis.jpg?raw=true=80&w=2874&auto=format&fit-crop" alt="Supra Varis" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Lexus%20LM.jpg?raw=true=80&w=2864&auto=format&fit-crop" alt="Lexus LM" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/BMW%20M4%20Adro.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="BMW M4" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
-
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Defender%20Urban.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Urban Defender" class="masonry-image" data-aos="fade-up">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Mustang%20APR.jpg?raw=true=80&w=2864&auto=format&fit=crop" alt="Mustang APR" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urus%201016.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Lamborghini Urus" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Artisan%20Spirits%20Lexus%20LX.jpg?raw=true=80&w=2874&auto=format&fit=crop" alt="Lexus LX Artisan Spirits" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/LB%20LC300.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Liberty Walk LC300" class="masonry-image" data-aos="fade-up">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Corolla%20GR%20Varis.jpg?raw=true=80&w=2832&auto=format&fit-crop" alt="Corolla GR Varis" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Techart%20Cayenne.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Techart Cayenne" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/SnapInsta.to_473693028_1809552903200069_61090058520546877_n.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Lamborghini Huracan" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/SnapInsta.to_475384008_1119826789883887_4158691388722334362_n.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="F150 Raptor" class="masonry-image" data-aos="fade-up">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Audi%20RS3.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Audi RS6 Blue" class="masonry-image" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Revuelto%201016.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Lamborghini Revuelto" class="masonry-image" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Porsche%20992.jpg?raw=true=80&w=2832&auto=format&fit=crop" alt="Porsche 992" class="masonry-image" data-aos="fade-up" data-aos-delay="300">
-            </div>
-        </div>
-    </section>
+<body class="bg-gray-900 text-white">
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-2 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-full shadow-lg">
+        <ul class="flex space-x-4">
+            <li><a href="#about" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">About</a></li>
+            <li><a href="#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Parts</a></li>
+            <li><a href="#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Gallery</a></li>
+            <li><a href="#news" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">News</a></li>
+            <li><a href="#contact" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Contact</a></li>
+        </ul>
+    </nav>
     
-    <section id="contact" class="py-24 bg-gray-900">
+    <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://www.netcarshow.com/BMW-M2_M_Performance_Parts-2023-wallpaper.jpg" alt="Performance Vehicle" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-4 h-full flex flex-col justify-between py-16">
+            <div class="flex-grow flex items-center justify-start text-left">
+                <div>
+                    <h1 class="text-3xl sm:text-3xl md:text-4xl font-extrabold text-gradient mb-8">
+                        UPGRADE. OUTPERFORM. OUTSHINE.
+                    </h1>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-transparent border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors">
+                            BOOK A CONSULTATION
+                        </button>
+                        <button class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                            START YOUR BUILD
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gradient">ABOUT US</h2>
+            <div class="text-lg text-gray-300 text-center max-w-4xl mx-auto">
+                <p class="mb-6">Our story began with a passion passed down from father to son. Growing up, weekends often meant going to car shows with my dad where I discovered the beauty, power, and culture of cars.</p>
+                <p class="mb-6">That passion took a new direction when my dad bought a 1999 Ford F-150. At the time, finding OEM and aftermarket parts in the Philippines was a real challenge. Driven by the need to keep our truck running and looking its best, I began importing parts myself. Soon, friends and fellow car enthusiasts started asking me to source parts for them too.</p>
+                <p class="mb-6">What began as a simple hustle quickly grew through word of mouth. Today, that same passion and dedication has transformed into a trusted business committed to providing high-quality OEM and aftermarket parts that help car owners restore, customize, and elevate their rides.</p>
+                <p class="mb-6">At the heart of it all is the same love for cars that started years ago, a love that drives us to bring only the best for fellow enthusiasts like you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="parts" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">PERFORMANCE CATEGORIES</h2>
+            
+            <div class="bento-grid">
+                <!-- Large Card 1 -->
+                <div class="bento-item md:col-span-2 md:row-span-2" style="background-image: url('https://unpluggedperformance.com/wp-content/uploads/2024/04/2024-Tesla-Model-3-Performance-Carbon-Fiber-Full-Aero-Kit-Unplugged-Performance-3.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-2xl font-bold">AERO BODY KITS</h3>
+                        <p class="text-gray-300 mt-2">Carbon Fiber Excellence</p>
+                    </div>
+                </div>
+
+                <!-- Small Card 1 -->
+                <div class="bento-item" style="background-image: url('https://images.customwheeloffset.com/thumb/3196671-8-2024-wrx-subaru-premium-air-lift-performance-air-suspension-enkei-vanquish-gloss-black.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-lg font-bold">SUSPENSION</h3>
+                        <p class="text-gray-300 mt-1">Air Lift Performance</p>
+                    </div>
+                </div>
+
+                <!-- Small Card 2 -->
+                <div class="bento-item" style="background-image: url('https://www.powerstop.com/wp-content/uploads/2019/06/power-stop-z36-brake-kit.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-lg font-bold">BRAKE SYSTEMS</h3>
+                        <p class="text-gray-300 mt-1">High Performance</p>
+                    </div>
+                </div>
+
+                <!-- Large Card 2 -->
+                <div class="bento-item md:col-span-2" style="background-image: url('https://www.forgeline.com/product_images/forgeline/1-9N3A2721-%20M%20-2568.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-2xl font-bold">FORGED WHEELS</h3>
+                        <p class="text-gray-300 mt-2">Three Piece Design</p>
+                    </div>
+                </div>
+
+                <!-- Small Card 3 -->
+                <div class="bento-item" style="background-image: url('https://azblogsingle.wpengine.com/wp-content/uploads/2019/12/77-2617kc_ENG-1.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-lg font-bold">COLD AIR INTAKE</h3>
+                        <p class="text-gray-300 mt-1">Enhanced Airflow</p>
+                    </div>
+                </div>
+
+                <!-- Small Card 4 -->
+                <div class="bento-item" style="background-image: url('https://engineeringlearn.com/wp-content/uploads/2021/04/Exhaust-System.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-lg font-bold">EXHAUST SYSTEMS</h3>
+                        <p class="text-gray-300 mt-1">Performance Sound</p>
+                    </div>
+                </div>
+
+                <!-- Small Card 5 -->
+                <div class="bento-item" style="background-image: url('https://ae01.alicdn.com/kf/Sb9e5bc1076a840188ccf246b0c6e1294X.jpg')">
+                    <div class="bento-content">
+                        <h3 class="text-lg font-bold">LED LIGHTING</h3>
+                        <p class="text-gray-300 mt-1">Custom Illumination</p>
+                    </div>
+                </div>
+
+                <!-- Small Card 6 -->
+                <div class="bento-item" style="background-image: url('https://res.cloudinary.com/tint-world/image/upload/w_auto,f_auto,q_auto:good/tw-uploads-2/images/page-performance-parts-store/content-img-one_244848e6.png')">
+                    <div class="bento-content">
+                        <h3 class="text-lg font-bold">GAUGES</h3>
+                        <p class="text-gray-300 mt-1">Precision Monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">FEATURED BUILDS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true" alt="Aftermarket Auto Parts Range Rover" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Range Rover SV</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Bodykit</li>
+                                <li>3-Piece Forged Wheels</li>
+                                <li>Performance Exhaust</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/AMG%20G63%20Urban.jpg?raw=true" alt="Aftermarket Mercedes Urban G63" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Mercedes G63 AMG</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>Carbon Fibre Bullnose Bonnet</li>
+                                <li>Urban Icon Front Grille Center Badge</li>
+                                <li>Urban X Vossen Forged Wheels</li>
+                                <li>Milltek Sport Peroformance Exhaust</li>
+                                <li>Wing Mirrors Carbon Fibre Twill</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Cullinan%201016.jpg?raw=true" alt="Aftermarket Rolls Royce Cullinan" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Roll Royce Cullinan</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Aero Kit</li>
+                                <li>Forged Monoblock Wheels</li>
+                                <li>Bespoke Interior</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urus%201016.jpg?raw=true" alt="Aftermarket Lamborghini Urus" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Lamborghini Urus</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Bodykit</li>
+                                <li>Forged Wheels</li>
+                                <li>Custom Interior</li>
+                                <li>Titanium Exhaust</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/1016%20Porsche%20992.jpg?raw=true" alt="Featured Car 5" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Porsche 911 GT3 RS</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Carbon Bodykit</li>
+                                <li>Forged Wheels</li>
+                                <li>Titanium Exhaust</li>
+                                <li>Manthey Coilover Kit (Semi-active)</li>
+                                <li>Steel Braided Brake Line Set</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Land Rover Defender D110</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>Urban Widetrack Kit</li>
+                                <li>Urban Vossen Wheels</li>
+                                <li>High-Power LED Roof Light Bar</li>
+                                <li>Bespoke Interior</li>
+                                <li>Milltek X Urban Performance Exhaust</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">STAY CONNECTED</h2>
-                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Subscribe for the latest Auto Firm news, builds, and exclusive offers.</p>
+                <p class="text-xl text-gray-300 mb-8">Subscribe to receive the latest Aftermarket Auto Parts news, events, product information, and more.</p>
                 
-                <form class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-                    <input type="email" placeholder="Enter your email address" class="bg-gray-800 border border-gray-700 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all">
-                    <button type="submit" class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity w-full sm:w-auto transform hover:scale-105">
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                    <input type="email" placeholder="Enter your email address" class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <button class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
                         SUBSCRIBE
                     </button>
-                </form>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center" data-aos="fade-up" data-aos-delay="200">
-                <div>
-                    <i class="fas fa-map-marker-alt text-3xl text-orange-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">LOCATION</h3>
-                    <p class="text-gray-400">Serra Monte Villas<br>Quezon City, 1126</p>
-                </div>
-                <div>
-                    <i class="fas fa-phone text-3xl text-orange-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">CONTACT</h3>
-                    <p class="text-gray-400">Phone: (0992) 868-7788<br>Email: info@autofirm.com</p>
-                </div>
-                <div>
-                    <i class="fas fa-clock text-3xl text-orange-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">HOURS</h3>
-                    <p class="text-gray-400">Mon-Fri: 9AM-7PM<br></p>
-                </div>
+            
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:info@aftermarketautoparts.co" class="text-gray-400 hover:text-orange-400 transition-colors">
+                    <i class="fas fa-at text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors">
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <footer class="bg-black py-12">
+    <footer class="bg-gray-900 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-2xl font-bold text-gradient tracking-wider mb-6 md:mb-0">AUTO FIRM</div>
-                <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/aftermarketautoparts/" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-instagram text-2xl"></i></a>
-                    <a href="https://www.facebook.com/aftermarketautopartsaccessories/" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-facebook text-2xl"></i></a>
-                    <a href="https://www.youtube.com/@Jayzce" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-youtube text-2xl"></i></a>
-                    <a href="https://www.tiktok.com/@aftermarketautoparts" class="text-gray-400 hover:text-orange-400 transition-colors transform hover:scale-110"><i class="fab fa-tiktok text-2xl"></i></a>
+            <div class="flex flex-col md:flex-row justify-center items-center">
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 w-full">
+                    <p>&copy; 2024 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
                 </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-                <p>&copy; 2025 Auto Firm. All rights reserved. | Privacy Policy | Terms of Service</p>
             </div>
         </div>
     </footer>
-
-    <div id="image-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <img id="modal-image" src="" alt="Maximized view" class="modal-image rounded-lg shadow-2xl">
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS library for scroll animations
-        AOS.init({
-            once: true,
-            duration: 800,
-            easing: 'ease-in-out',
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Hero Image Carousel ---
-            const heroImages = document.querySelectorAll('.hero-image');
-            let currentHeroImageIndex = 0;
-
-            const changeHeroImage = () => {
-                heroImages[currentHeroImageIndex].classList.remove('active');
-                currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
-                heroImages[currentHeroImageIndex].classList.add('active');
-            };
-            setInterval(changeHeroImage, 8000); // Change image every 8 seconds
-            
-            // --- Typewriter Effect for Hero Text ---
-            const heroTextElement = document.getElementById('hero-text-dynamic');
-            const heroText = "Custom cars, trucks, and SUV";
-            let i = 0;
-
-            function typeWriter() {
-                if (i < heroText.length) {
-                    heroTextElement.textContent += heroText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50); // Typing speed
-                } else {
-                    // Start the 'un-typing' effect after a pause
-                    setTimeout(untypeWriter, 2000); // Pause before deleting
-                }
-            }
-
-            function untypeWriter() {
-                if (heroTextElement.textContent.length > 0) {
-                    // Remove the last character
-                    heroTextElement.textContent = heroTextElement.textContent.slice(0, -1);
-                    setTimeout(untypeWriter, 25); // Un-typing speed
-                } else {
-                    // Reset and start typing again after clearing the text
-                    i = 0;
-                    setTimeout(typeWriter, 500); // Pause before typing again
-                }
-            }
-
-            // Start the typewriter effect
-            typeWriter();
-
-            // --- Gallery Image Maximization ---
-            const modal = document.getElementById('image-modal');
-            const modalImage = document.getElementById('modal-image');
-            const modalClose = document.querySelector('.modal-close');
-            const galleryImages = document.querySelectorAll('.masonry-image');
-
-            // Open the modal when a gallery image is clicked
-            galleryImages.forEach(image => {
-                image.addEventListener('click', () => {
-                    modalImage.src = image.src;
-                    modal.classList.add('open');
-                });
-            });
-
-            // Close the modal when the close button is clicked
-            modalClose.addEventListener('click', () => {
-                modal.classList.remove('open');
-            });
-
-            // Close the modal when clicking outside the image
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('open');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
-
-
