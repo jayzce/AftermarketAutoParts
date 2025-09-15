@@ -205,9 +205,9 @@
                         UPGRADE. OUTPERFORM. OUTSHINE.
                     </h1>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                        <a href="https://popl.co/card/VCg0t2ea/2/dash" target="_blank" class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity inline-block text-center">
                             START YOUR BUILD
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -439,8 +439,6 @@
                             userId = userCredential.user.uid;
                             console.log('Signed in with custom token.');
                         } catch (tokenError) {
-                            // This is expected behavior as the custom token is often invalid in this environment.
-                            // The app falls back to anonymous authentication, which is a successful and desired outcome.
                             console.log('Custom token sign-in failed. Falling back to anonymous auth:', tokenError);
                             const userCredential = await signInAnonymously(auth);
                             userId = userCredential.user.uid;
@@ -468,8 +466,10 @@
         async function handleSubscription() {
             if (isSubscribing) return;
             isSubscribing = true;
+            console.log('Starting subscription attempt...');
 
             if (!isAuthReady) {
+                console.warn('Authentication not ready. Cannot subscribe yet.');
                 showMessage('Authentication not ready. Please wait.', true);
                 isSubscribing = false;
                 return;
@@ -492,19 +492,22 @@
             showMessage('Subscribing...', false);
             
             try {
+                console.log('Attempting to add document to Firestore...');
                 await addDoc(collection(db, `artifacts/${appId}/users/${userId}/newsletter_subscribers`), {
                     email: email,
                     timestamp: serverTimestamp()
                 });
 
+                console.log('Subscription successful!');
                 showSuccessModal();
-                console.log('Successfully saved email.');
 
             } catch (error) {
-                console.error('Error adding document:', error);
+                console.error('Subscription failed:', error);
                 showErrorModal();
+
             } finally {
                 isSubscribing = false;
+                console.log('Subscription attempt finished.');
             }
         }
 
