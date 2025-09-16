@@ -1,10 +1,9 @@
-<!DOCTYPE ahtml>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aftermarket Auto Parts - Your Performance Parts Source</title>
-    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/car.svg" type="image/svg+xml">
+    <title>Aftermarket Auto Parts - Premium Performance Parts</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -104,80 +103,6 @@
             position: relative;
             z-index: 1;
         }
-
-        /* Bento Box CSS */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(200px, auto);
-            gap: 1.5rem;
-        }
-
-        .bento-item {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            cursor: pointer;
-        }
-
-        .bento-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .bento-item video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            transition: opacity 0.3s ease-in-out;
-            display: none; /* Initially hide the video */
-        }
-
-        .bento-item:hover video {
-            display: block; /* Show video on hover */
-        }
-
-        .bento-content {
-            position: relative;
-            z-index: 1;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .bento-item:hover .video-overlay {
-            opacity: 0;
-        }
-
-        /* Responsive grid sizes */
-        @media (min-width: 768px) {
-            .md\:col-span-2 {
-                grid-column: span 2 / span 2;
-            }
-            .md\:row-span-2 {
-                grid-row: span 2 / span 2;
-            }
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -193,23 +118,18 @@
     
     <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0">
-            <!-- Full-screen image background -->
-            <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Taycan.png?raw=true" alt="Porsche Taycan with aftermarket parts" class="w-full h-full object-cover opacity-60">
+            <img src="https://www.netcarshow.com/BMW-M2_M_Performance_Parts-2023-wallpaper.jpg" alt="Performance Vehicle" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
         </div>
         
-        <div class="relative z-10 max-w-6xl mx-auto px-4 h-full flex flex-col justify-between py-16">
-            <div class="flex-grow flex items-center justify-start text-left">
-                <div>
-                    <h1 class="text-3xl sm:text-3xl md:text-4xl font-extrabold text-gradient mb-8">
-                        UPGRADE. OUTPERFORM. OUTSHINE.
-                    </h1>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="https://popl.co/card/VCg0t2ea/2/dash" target="_blank" class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity inline-block text-center">
-                            START YOUR BUILD
-                        </a>
-                    </div>
+        <div class="relative z-10 text-center max-w-6xl mx-auto px-4 h-full flex flex-col justify-between py-16">
+            <div class="flex-grow flex items-center justify-center">
                 </div>
+            
+            <div class="flex justify-center">
+                <button class="bg-transparent border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors">
+                    BOOK A CONSULTATION
+                </button>
             </div>
         </div>
     </section>
@@ -230,68 +150,206 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">PERFORMANCE CATEGORIES</h2>
             
-            <div class="bento-grid">
-                <!-- Large Card 1 -->
-                <div class="bento-item md:col-span-2 md:row-span-2" style="background-image: url('https://unpluggedperformance.com/wp-content/uploads/2024/04/2024-Tesla-Model-3-Performance-Carbon-Fiber-Full-Aero-Kit-Unplugged-Performance-3.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-2xl font-bold">AERO BODY KITS</h3>
-                        <p class="text-gray-300 mt-2">Carbon Fiber Excellence</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://unpluggedperformance.com/wp-content/uploads/2024/04/2024-Tesla-Model-3-Performance-Carbon-Fiber-Full-Aero-Kit-Unplugged-Performance-3.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">AERO BODY KITS</h3>
+                                <p class="text-gray-300">Carbon Fiber Excellence</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Small Card 1 -->
-                <div class="bento-item" style="background-image: url('https://images.customwheeloffset.com/thumb/3196671-8-2024-wrx-subaru-premium-air-lift-performance-air-suspension-enkei-vanquish-gloss-black.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-lg font-bold">SUSPENSION</h3>
-                        <p class="text-gray-300 mt-1">Air Lift Performance</p>
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.customwheeloffset.com/thumb/3196671-8-2024-wrx-subaru-premium-air-lift-performance-air-suspension-enkei-vanquish-gloss-black.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">SUSPENSION</h3>
+                                <p class="text-gray-300">Air Lift Performance</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Small Card 2 -->
-                <div class="bento-item" style="background-image: url('https://www.powerstop.com/wp-content/uploads/2019/06/power-stop-z36-brake-kit.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-lg font-bold">BRAKE SYSTEMS</h3>
-                        <p class="text-gray-300 mt-1">High Performance</p>
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://www.powerstop.com/wp-content/uploads/2019/06/power-stop-z36-brake-kit.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">BRAKE SYSTEMS</h3>
+                                <p class="text-gray-300">High Performance</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Large Card 2 -->
-                <div class="bento-item md:col-span-2" style="background-image: url('https://www.forgeline.com/product_images/forgeline/1-9N3A2721-%20M%20-2568.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-2xl font-bold">FORGED WHEELS</h3>
-                        <p class="text-gray-300 mt-2">Three Piece Design</p>
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://www.forgeline.com/product_images/forgeline/1-9N3A2721-%20M%20-2568.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">FORGED WHEELS</h3>
+                                <p class="text-gray-300">Three Piece Design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://azblogsingle.wpengine.com/wp-content/uploads/2019/12/77-2617kc_ENG-1.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">COLD AIR INTAKE</h3>
+                                <p class="text-gray-300">Enhanced Airflow</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Small Card 3 -->
-                <div class="bento-item" style="background-image: url('https://azblogsingle.wpengine.com/wp-content/uploads/2019/12/77-2617kc_ENG-1.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-lg font-bold">COLD AIR INTAKE</h3>
-                        <p class="text-gray-300 mt-1">Enhanced Airflow</p>
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://engineeringlearn.com/wp-content/uploads/2021/04/Exhaust-System.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">EXHAUST SYSTEMS</h3>
+                                <p class="text-gray-300">Performance Sound</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Small Card 4 -->
-                <div class="bento-item" style="background-image: url('https://engineeringlearn.com/wp-content/uploads/2021/04/Exhaust-System.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-lg font-bold">EXHAUST SYSTEMS</h3>
-                        <p class="text-gray-300 mt-1">Performance Sound</p>
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://ae01.alicdn.com/kf/Sb9e5bc1076a840188ccf246b0c6e1294X.jpg')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">LED LIGHTING</h3>
+                                <p class="text-gray-300">Custom Illumination</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Small Card 5 -->
-                <div class="bento-item" style="background-image: url('https://ae01.alicdn.com/kf/Sb9e5bc1076a840188ccf246b0c6e1294X.jpg')">
-                    <div class="bento-content">
-                        <h3 class="text-lg font-bold">LED LIGHTING</h3>
-                        <p class="text-gray-300 mt-1">Custom Illumination</p>
+                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://res.cloudinary.com/tint-world/image/upload/w_auto,f_auto,q_auto:good/tw-uploads-2/images/page-performance-parts-store/content-img-one_244848e6.png')">
+                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">GAUGES</h3>
+                                <p class="text-gray-300">Precision Monitoring</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Small Card 6 -->
-                <div class="bento-item" style="background-image: url('https://res.cloudinary.com/tint-world/image/upload/w_auto,f_auto,q_auto:good/tw-uploads-2/images/page-performance-parts-store/content-img-one_244848e6.png')">
-                    <div class="bento-content">
-                        <h3 class="text-lg font-bold">GAUGES</h3>
-                        <p class="text-gray-300 mt-1">Precision Monitoring</p>
+    <section id="gallery" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">FEATURED BUILDS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true" alt="Aftermarket Auto Parts Range Rover" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Range Rover SV</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Bodykit</li>
+                                <li>3-Piece Forged Wheels</li>
+                                <li>Performance Exhaust</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/AMG%20G63%20Urban.jpg?raw=true" alt="Aftermarket Mercedes Urban G63" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Mercedes G63 AMG</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>Carbon Fibre Bullnose Bonnet</li>
+                                <li>Urban Icon Front Grille Center Badge</li>
+                                <li>Urban X Vossen Forged Wheels</li>
+                                <li>Milltek Sport Peroformance Exhaust</li>
+                                <li>Wing Mirrors Carbon Fibre Twill</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Cullinan%201016.jpg?raw=true" alt="Aftermarket Rolls Royce Cullinan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Roll Royce Cullinan</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Aero Kit</li>
+                                <li>Forged Monoblock Wheels</li>
+                                <li>Bespoke Interior</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urus%201016.jpg?raw=true" alt="Aftermarket Lamborghini Urus" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Lamborghini Urus</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Bodykit</li>
+                                <li>Forged Wheels</li>
+                                <li>Custom Interior</li>
+                                <li>Titanium Exhaust</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/1016%20Porsche%20992.jpg?raw=true" alt="Featured Car 5" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Porsche 911 GT3 RS</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>1016 Carbon Bodykit</li>
+                                <li>Forged Wheels</li>
+                                <li>Titanium Exhaust</li>
+                                <li>Manthey Coilover Kit (Semi-active)</li>
+                                <li>Steel Braided Brake Line Set</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-4">Land Rover Defender D110</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>Urban Widetrack Kit</li>
+                                <li>Urban Vossen Wheels</li>
+                                <li>High-Power LED Roof Light Bar</li>
+                                <li>Bespoke Interior</li>
+                                <li>Milltek X Urban Performance Exhaust</li>
+                                
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -305,12 +363,11 @@
                 <p class="text-xl text-gray-300 mb-8">Subscribe to receive the latest Aftermarket Auto Parts news, events, product information, and more.</p>
                 
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
-                    <input id="emailInput" type="email" placeholder="Enter your email address" class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                    <button id="subscribeButton" class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                    <input type="email" placeholder="Enter your email address" class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <button class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
                         SUBSCRIBE
                     </button>
                 </div>
-                <div id="statusMessage" class="text-center mt-4 text-green-400"></div>
             </div>
             
             <div class="flex justify-center space-x-6">
@@ -336,215 +393,5 @@
             </div>
         </div>
     </footer>
-
-    <!-- Success Modal -->
-    <div id="successModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden items-center justify-center p-4">
-        <div class="bg-gray-800 rounded-lg p-8 max-w-sm w-full relative transform scale-100 transition-all duration-300 ease-out shadow-2xl">
-            <button id="closeModalButton" class="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="text-center">
-                <i class="fas fa-check-circle text-orange-400 text-5xl mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">You’re all set!</h3>
-                <p class="text-gray-300">Thanks for joining — exclusive deals and updates are headed your way!</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Error Modal -->
-    <div id="errorModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden items-center justify-center p-4">
-        <div class="bg-gray-800 rounded-lg p-8 max-w-sm w-full relative transform scale-100 transition-all duration-300 ease-out shadow-2xl">
-            <button id="closeErrorModalButton" class="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="text-center">
-                <i class="fas fa-exclamation-triangle text-red-400 text-5xl mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Oops, something went wrong.</h3>
-                <p class="text-gray-300">We couldn't process your subscription at this time. Please check your internet connection and try again.</p>
-            </div>
-        </div>
-    </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, addDoc, collection, serverTimestamp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables for Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = {
-            apiKey: "AIzaSyAh0nXhqlhSAsWVD5FA-Yzw-tQsTdUnB44",
-            authDomain: "aftermarket-auto-parts.firebaseapp.com",
-            projectId: "aftermarket-auto-parts",
-            storageBucket: "aftermarket-auto-parts.firebasestorage.app",
-            messagingSenderId: "755479641370",
-            appId: "1:755479641370:web:d04ad4d634dd6e442c80a3",
-            measurementId: "G-W722EMX6MM"
-        };
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        // Initialize Firebase and Firestore
-        let app;
-        let db;
-        let auth;
-        let userId = null;
-        let isAuthReady = false;
-
-        const statusMessage = document.getElementById('statusMessage');
-        const emailInput = document.getElementById('emailInput');
-        const subscribeButton = document.getElementById('subscribeButton');
-        const successModal = document.getElementById('successModal');
-        const errorModal = document.getElementById('errorModal');
-        const closeModalButton = document.getElementById('closeModalButton');
-        const closeErrorModalButton = document.getElementById('closeErrorModalButton');
-
-        function showMessage(message, isError = false) {
-            statusMessage.textContent = message;
-            statusMessage.classList.remove('text-green-400', 'text-red-400');
-            statusMessage.classList.add(isError ? 'text-red-400' : 'text-green-400');
-        }
-
-        function showSuccessModal() {
-            successModal.classList.remove('hidden');
-            successModal.classList.add('flex');
-            emailInput.value = ''; // Clear the input field
-        }
-        
-        function hideSuccessModal() {
-            successModal.classList.add('hidden');
-            successModal.classList.remove('flex');
-        }
-
-        function showErrorModal() {
-            errorModal.classList.remove('hidden');
-            errorModal.classList.add('flex');
-        }
-
-        function hideErrorModal() {
-            errorModal.classList.add('hidden');
-            errorModal.classList.remove('flex');
-        }
-
-        async function initFirebase() {
-            try {
-                if (Object.keys(firebaseConfig).length > 0) {
-                    app = initializeApp(firebaseConfig);
-                    db = getFirestore(app);
-                    auth = getAuth(app);
-                    setLogLevel('debug'); // Enable Firestore debug logging
-
-                    if (initialAuthToken) {
-                        try {
-                            const userCredential = await signInWithCustomToken(auth, initialAuthToken);
-                            userId = userCredential.user.uid;
-                            console.log('Signed in with custom token.');
-                        } catch (tokenError) {
-                            console.log('Custom token sign-in failed. Falling back to anonymous auth:', tokenError);
-                            const userCredential = await signInAnonymously(auth);
-                            userId = userCredential.user.uid;
-                        }
-                    } else {
-                        const userCredential = await signInAnonymously(auth);
-                        userId = userCredential.user.uid;
-                    }
-
-                    isAuthReady = true;
-                    console.log('Firebase initialized. User ID:', userId);
-
-                } else {
-                    showMessage('Firebase config is missing.', true);
-                    console.error('Firebase config is missing.');
-                }
-            } catch (error) {
-                showMessage('Firebase initialization failed.', true);
-                console.error('Error initializing Firebase:', error);
-            }
-        }
-
-        // Newsletter subscription logic
-        let isSubscribing = false;
-        async function handleSubscription() {
-            if (isSubscribing) return;
-            isSubscribing = true;
-            console.log('Starting subscription attempt...');
-
-            if (!isAuthReady) {
-                console.warn('Authentication not ready. Cannot subscribe yet.');
-                showMessage('Authentication not ready. Please wait.', true);
-                isSubscribing = false;
-                return;
-            }
-
-            const email = emailInput.value.trim();
-            if (!email) {
-                showMessage('Please enter an email address.', true);
-                isSubscribing = false;
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showMessage('Please enter a valid email address.', true);
-                isSubscribing = false;
-                return;
-            }
-
-            showMessage('Subscribing...', false);
-            
-            try {
-                console.log('Attempting to add document to Firestore...');
-                await addDoc(collection(db, `artifacts/${appId}/users/${userId}/newsletter_subscribers`), {
-                    email: email,
-                    timestamp: serverTimestamp()
-                });
-
-                console.log('Subscription successful!');
-                showSuccessModal();
-
-            } catch (error) {
-                console.error('Subscription failed:', error);
-                showErrorModal();
-
-            } finally {
-                isSubscribing = false;
-                console.log('Subscription attempt finished.');
-            }
-        }
-
-        initFirebase();
-
-        // Event listeners for button click and 'Enter' key press
-        subscribeButton.addEventListener('click', handleSubscription);
-        emailInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault(); // Prevent default form submission behavior
-                handleSubscription();
-            }
-        });
-
-        // Hide modal when the close button is clicked
-        closeModalButton.addEventListener('click', hideSuccessModal);
-        closeErrorModalButton.addEventListener('click', hideErrorModal);
-
-        // Hide modal when the backdrop is clicked
-        successModal.addEventListener('click', (e) => {
-            if (e.target.id === 'successModal') {
-                hideSuccessModal();
-            }
-        });
-        errorModal.addEventListener('click', (e) => {
-            if (e.target.id === 'errorModal') {
-                hideErrorModal();
-            }
-        });
-
-        // Hide modal when the 'Escape' key is pressed
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                hideSuccessModal();
-                hideErrorModal();
-            }
-        });
-    </script>
 </body>
 </html>
