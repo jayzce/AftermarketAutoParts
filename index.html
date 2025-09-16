@@ -184,11 +184,71 @@
                 height: 200px;
             }
         }
+        
+        /* Hero Text Animation CSS */
+        .hero-text-animate {
+            position: relative;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            font-size: 3rem; /* 48px */
+            letter-spacing: 4px;
+            overflow: hidden;
+            background: linear-gradient(90deg, #000, #fff, #000);
+            background-repeat: no-repeat;
+            background-size: 80%;
+            animation: animate 17s linear infinite; /* Increased duration for delay */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgba(255, 255, 255, 0);
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        @keyframes animate {
+            0% {
+                background-position: -500%;
+            }
+            10% { /* Animation completes by 10% of the total time (approx. 1.7s) */
+                background-position: 500%;
+            }
+            100% { /* Holds at the final state until 100% (approx. 15.3s) */
+                background-position: 500%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text-animate {
+                font-size: 2rem; /* 32px */
+            }
+        }
+
+        /* Social Media Icon Micro-animations */
+        .social-icon-link {
+            display: inline-block; /* Essential for transform to work correctly */
+            transition: transform 0.2s ease-out, color 0.2s ease-out; /* Smooth transitions */
+        }
+
+        /* Hover animation */
+        .social-icon-link:hover {
+            transform: translateY(-5px) scale(1.1); /* Lifts and slightly enlarges */
+        }
+
+        /* Click animation */
+        .social-icon-link:active {
+            animation: icon-pulse 0.3s ease-in-out;
+        }
+
+        @keyframes icon-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); } /* Pulses larger */
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
-    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-2 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-full shadow-lg">
-        <ul class="flex space-x-4">
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-2 rounded-full shadow-lg">
+        <ul class="flex space-x-40">
             <li><a href="#about" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">About</a></li>
             <li><a href="#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Parts</a></li>
             <li><a href="#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Gallery</a></li>
@@ -204,13 +264,14 @@
         </div>
         
         <div class="relative z-10 text-center max-w-6xl mx-auto px-4 h-full flex flex-col justify-between py-16">
-            <div class="flex-grow flex items-center justify-center">
-                </div>
+            <div class="flex-grow flex items-center justify-center flex-col">
+                  <h1 class="hero-text-animate">Upgrade. Outperform. Outshine.</h1>
+            </div>
             
             <div class="flex justify-center">
-                <button class="bg-transparent border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors">
+                <a href="https://popl.co/card/VCg0t2ea/2/dash" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors">
                     START YOUR BUILD!
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -283,7 +344,7 @@
 
             </div>
             
-            </div>
+        </div>
     </section>
 
     <section id="gallery" class="py-20 bg-black">
@@ -379,7 +440,7 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-cover">
+                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-cover">
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Land Rover Defender D110</h3>
@@ -406,23 +467,24 @@
                 
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
                     <input type="email" placeholder="Enter your email address" class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                    <button class="accent-gradient text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                    
+                    <button class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity" style="background-color: #14FFFA;">
                         SUBSCRIBE
                     </button>
                 </div>
             </div>
             
             <div class="flex justify-center space-x-6">
-                <a href="mailto:info@aftermarketautoparts.co" class="text-gray-200 hover:text-orange-400 transition-colors">
+                <a href="mailto:info@aftermarketautoparts.co" class="social-icon-link text-gray-200 hover:text-orange-400">
                     <i class="fas fa-at text-2xl"></i>
                 </a>
-                <a href="https://www.facebook.com/aftermarketautopartsaccessories" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-orange-400 transition-colors">
+                <a href="https://www.facebook.com/aftermarketautopartsaccessories" target="_blank" rel="noopener noreferrer" class="social-icon-link text-gray-200 hover:text-orange-400">
                     <i class="fab fa-facebook text-2xl"></i>
                 </a>
-                <a href="https://www.instagram.com/aftermarketautoparts" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-orange-400 transition-colors">
+                <a href="https://www.instagram.com/aftermarketautoparts" target="_blank" rel="noopener noreferrer" class="social-icon-link text-gray-200 hover:text-orange-400">
                     <i class="fab fa-instagram text-2xl"></i>
                 </a>
-                <a href="https://www.youtube.com/@jayzce" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-orange-400 transition-colors">
+                <a href="https://www.youtube.com/@jayzce" target="_blank" rel="noopener noreferrer" class="social-icon-link text-gray-200 hover:text-orange-400">
                     <i class="fab fa-youtube text-2xl"></i>
                 </a>
             </div>
