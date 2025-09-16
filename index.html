@@ -246,17 +246,6 @@
             50% { transform: scale(1.2); } /* Pulses larger */
             100% { transform: scale(1); }
         }
-
-        /* Custom Bounce-In Animation for SweetAlert2 */
-        .bounce-in { 
-            animation: bounceIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-        } 
-        @keyframes bounceIn { 
-            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; } 
-            50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; } 
-            70% { transform: scale(0.9) rotate(-2deg); opacity: 0.9; } 
-            100% { transform: scale(1) rotate(0deg); opacity: 1; } 
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -487,5 +476,92 @@
                     <i class="fas fa-at text-2xl"></i>
                 </a>
                 <a href="https://www.facebook.com/aftermarketautopartsaccessories" target="_blank" rel="noopener noreferrer" class="social-icon-link text-gray-200 hover:text-orange-400">
-                    <i class="fab fa-facebook text
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/aftermarketautoparts" target="_blank" rel="noopener noreferrer" class="social-icon-link text-gray-200 hover:text-orange-400">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://www.youtube.com/@jayzce" target="_blank" rel="noopener noreferrer" class="social-icon-link text-gray-200 hover:text-orange-400">
+                    <i class="fab fa-youtube text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-center items-center">
+                <div class="text-center text-gray-400">
+                    <p>&copy; 2024 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <script>
+        // Newsletter Form Submission Handling
+        const newsletterForm = document.getElementById('newsletter-form');
+        const newsletterEmailInput = newsletterForm.querySelector('input[name="email"]');
+
+        newsletterForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = newsletterEmailInput.value;
+            const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
+
+            // Use fetch API to send data to the Google Apps Script web app
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `email=${encodeURIComponent(email)}` // Send email data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    // Handle server errors (e.g., script not deployed, incorrect URL)
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Or response.json() if your script returns JSON
+            })
+            .then(data => {
+                // Success! Show the animated pop-up message.
+                Swal.fire({
+                    title: 'Boom!',
+                    html: 'You’ve successfully registered.<br>Let’s roll!',
+                    icon: 'success', // You can use 'success', 'error', 'warning', 'info', 'question'
+                    confirmButtonText: 'Awesome!',
+                    // Custom animations and effects for SweetAlert2
+                    showClass: {
+                        popup: 'animate__animated animate__bounceInDown animate__fast', // Bounce In with a slight down-start
+                        icon: 'animate__animated animate__confetti' // Confetti effect for the icon
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutDown'
+                    },
+                    // You can also add custom class to the popup for more styling
+                    customClass: {
+                        popup: 'swal2-popup-custom'
+                    },
+                });
+
+                // Optionally clear the input field after successful submission
+                newsletterEmailInput.value = '';
+            })
+            .catch(error => {
+                console.error('Error submitting newsletter:', error);
+                // Show an error message to the user
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Something went wrong. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'Close'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
