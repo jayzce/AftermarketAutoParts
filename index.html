@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aftermarket Auto Parts - Premium Performance Parts</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.lcom/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -103,6 +103,87 @@
             position: relative;
             z-index: 1;
         }
+        
+        /* Bento Box Layout from user's request */
+        .bento-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 1fr 1.5fr 1fr;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 80vh;
+            min-height: 600px;
+        }
+
+        .bento-item {
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .bento-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .bento-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .item-1 { grid-column: 1 / 2; grid-row: 1 / 2; }
+        .item-2 { grid-column: 2 / 3; grid-row: 1 / 2; }
+        .item-3 { grid-column: 3 / 4; grid-row: 1 / 3; }
+        .item-4 { grid-column: 1 / 2; grid-row: 2 / 3; }
+        .item-5 { grid-column: 2 / 3; grid-row: 2 / 3; }
+        .item-6 { grid-column: 3 / 4; grid-row: 3 / 4; }
+        .item-7 { grid-column: 1 / 2; grid-row: 3 / 4; }
+        .item-8 { grid-column: 2 / 3; grid-row: 3 / 4; }
+
+        /* Responsive adjustments for new layout */
+        @media (max-width: 768px) {
+            .bento-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                height: auto;
+                min-height: auto;
+            }
+
+            .item-1, .item-2, .item-4, .item-5, .item-6, .item-7, .item-8 {
+                grid-column: span 1;
+                grid-row: auto;
+            }
+            
+            .item-3 {
+                grid-column: 1 / 3;
+                grid-row: auto;
+            }
+            .bento-item {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -146,100 +227,75 @@
         </div>
     </section>
 
+    <!-- Updated section with a unique bento box grid layout -->
     <section id="parts" class="py-20 bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">PERFORMANCE CATEGORIES</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://unpluggedperformance.com/wp-content/uploads/2024/04/2024-Tesla-Model-3-Performance-Carbon-Fiber-Full-Aero-Kit-Unplugged-Performance-3.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">AERO BODY KITS</h3>
-                                <p class="text-gray-300">Carbon Fiber Excellence</p>
-                            </div>
-                        </div>
+            <div class="bento-container">
+                
+                <!-- Card 1: Aero Body Kits -->
+                <div class="bento-item item-1 bg-gray-900" style="background-image: url('https://unpluggedperformance.com/wp-content/uploads/2024/04/2024-Tesla-Model-3-Performance-Carbon-Fiber-Full-Aero-Kit-Unplugged-Performance-3.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">AERO BODY KITS</h3>
                     </div>
                 </div>
 
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.customwheeloffset.com/thumb/3196671-8-2024-wrx-subaru-premium-air-lift-performance-air-suspension-enkei-vanquish-gloss-black.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">SUSPENSION</h3>
-                                <p class="text-gray-300">Air Lift Performance</p>
-                            </div>
-                        </div>
+                <!-- Card 2: Forged Wheels -->
+                <div class="bento-item item-2 bg-gray-900" style="background-image: url('https://www.forgeline.com/product_images/forgeline/1-9N3A2721-%20M%20-2568.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">FORGED WHEELS</h3>
                     </div>
                 </div>
 
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://www.powerstop.com/wp-content/uploads/2019/06/power-stop-z36-brake-kit.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">BRAKE SYSTEMS</h3>
-                                <p class="text-gray-300">High Performance</p>
-                            </div>
-                        </div>
+                <!-- Card 3: Exhaust Systems -->
+                <div class="bento-item item-3 bg-gray-900" style="background-image: url('https://engineeringlearn.com/wp-content/uploads/2021/04/Exhaust-System.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">EXHAUST SYSTEMS</h3>
                     </div>
                 </div>
 
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://www.forgeline.com/product_images/forgeline/1-9N3A2721-%20M%20-2568.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">FORGED WHEELS</h3>
-                                <p class="text-gray-300">Three Piece Design</p>
-                            </div>
-                        </div>
+                <!-- Card 4: Cold Air Intake -->
+                <div class="bento-item item-4 bg-gray-900" style="background-image: url('https://azblogsingle.wpengine.com/wp-content/uploads/2019/12/77-2617kc_ENG-1.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">COLD AIR INTAKE</h3>
                     </div>
                 </div>
+
+                <!-- Card 5: Aero Bodykits -->
+                <div class="bento-item item-5 bg-gray-900" style="background-image: url('https://images.customwheeloffset.com/thumb/3196671-8-2024-wrx-subaru-premium-air-lift-performance-air-suspension-enkei-vanquish-gloss-black.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">AERO BODYKIT</h3>
+                    </div>
+                </div>
+
+                <!-- Card 6: Brake Systems -->
+                <div class="bento-item item-6 bg-gray-900" style="background-image: url('https://www.powerstop.com/wp-content/uploads/2019/06/power-stop-z36-brake-kit.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">BRAKE SYSTEMS</h3>
+                    </div>
+                </div>
+
+                <!-- Card 7: Gauges -->
+                <div class="bento-item item-7 bg-gray-900" style="background-image: url('https://res.cloudinary.com/tint-world/image/upload/w_auto,f_auto,q_auto:good/tw-uploads-2/images/page-performance-parts-store/content-img-one_244848e6.png')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">GAUGES</h3>
+                    </div>
+                </div>
+
+                <!-- Card 8: Interior Upgrades -->
+                <div class="bento-item item-8 bg-gray-900" style="background-image: url('https://www.carbodydesign.com/media/2021/08/Mercedes-AMG-SL-Interior-02-600x420.jpg')">
+                    <div class="overlay">
+                        <h3 class="text-2xl">INTERIOR UPGRADES</h3>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://azblogsingle.wpengine.com/wp-content/uploads/2019/12/77-2617kc_ENG-1.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">COLD AIR INTAKE</h3>
-                                <p class="text-gray-300">Enhanced Airflow</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://engineeringlearn.com/wp-content/uploads/2021/04/Exhaust-System.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">EXHAUST SYSTEMS</h3>
-                                <p class="text-gray-300">Performance Sound</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://ae01.alicdn.com/kf/Sb9e5bc1076a840188ccf246b0c6e1294X.jpg')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">LED LIGHTING</h3>
-                                <p class="text-gray-300">Custom Illumination</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-hover bg-gray-900 rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://res.cloudinary.com/tint-world/image/upload/w_auto,f_auto,q_auto:good/tw-uploads-2/images/page-performance-parts-store/content-img-one_244848e6.png')">
-                        <div class="h-full bg-gradient-to-t from-black to-transparent flex items-end">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">GAUGES</h3>
-                                <p class="text-gray-300">Precision Monitoring</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="mt-16 text-center">
+                <button class="bg-transparent border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors">
+                    SEE ALL
+                </button>
             </div>
         </div>
     </section>
