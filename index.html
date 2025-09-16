@@ -7,9 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
         }
         .hero-gradient {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
@@ -170,7 +172,7 @@
                 height: auto;
                 min-height: auto;
             }
-
+            
             .item-1, .item-2, .item-4, .item-5, .item-6, .item-7, .item-8 {
                 grid-column: span 1;
                 grid-row: auto;
@@ -363,7 +365,6 @@
                                 <li>1016 Bodykit</li>
                                 <li>3-Piece Forged Wheels</li>
                                 <li>Performance Exhaust</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -381,7 +382,6 @@
                                 <li>Urban X Vossen Forged Wheels</li>
                                 <li>Milltek Sport Peroformance Exhaust</li>
                                 <li>Wing Mirrors Carbon Fibre Twill</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -397,7 +397,6 @@
                                 <li>1016 Aero Kit</li>
                                 <li>Forged Monoblock Wheels</li>
                                 <li>Bespoke Interior</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -414,7 +413,6 @@
                                 <li>Forged Wheels</li>
                                 <li>Custom Interior</li>
                                 <li>Titanium Exhaust</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -432,7 +430,6 @@
                                 <li>Titanium Exhaust</li>
                                 <li>Manthey Coilover Kit (Semi-active)</li>
                                 <li>Steel Braided Brake Line Set</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -440,7 +437,7 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-cover">
+                            <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-cover">
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Land Rover Defender D110</h3>
@@ -450,7 +447,6 @@
                                 <li>High-Power LED Roof Light Bar</li>
                                 <li>Bespoke Interior</li>
                                 <li>Milltek X Urban Performance Exhaust</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -463,15 +459,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">STAY CONNECTED</h2>
-                <p class="text-xl text-gray-300 mb-8">Subscribe to receive the latest Aftermarket Auto Parts news, events, product information, and more.</p>
+                <p class="text-xl text-gray-300 px-4 mb-8">Subscribe to receive the latest Aftermarket Auto Parts news, events, product information, and more.</p>
                 
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
-                    <input type="email" placeholder="Enter your email address" class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                    
-                    <button class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity" style="background-color: #14FFFA;">
-                        SUBSCRIBE
-                    </button>
-                </div>
+                <form id="newsletter-form" action="YOUR_NEWSLETTER_APPS_SCRIPT_URL_HERE" method="POST">
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                        <input type="email" name="email" placeholder="Enter your email address" required class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        <button type="submit" class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity" style="background-color: #14FFFA;">
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </form>
             </div>
             
             <div class="flex justify-center space-x-6">
@@ -494,11 +491,77 @@
     <footer class="bg-gray-900 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-center items-center">
-                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 w-full">
+                <div class="text-center text-gray-400">
                     <p>&copy; 2024 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <script>
+        // Newsletter Form Submission Handling
+        const newsletterForm = document.getElementById('newsletter-form');
+        const newsletterEmailInput = newsletterForm.querySelector('input[name="email"]');
+
+        newsletterForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = newsletterEmailInput.value;
+            const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
+
+            // Use fetch API to send data to the Google Apps Script web app
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `email=${encodeURIComponent(email)}` // Send email data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    // Handle server errors (e.g., script not deployed, incorrect URL)
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Or response.json() if your script returns JSON
+            })
+            .then(data => {
+                // Success! Show the animated pop-up message.
+                Swal.fire({
+                    title: 'Boom!',
+                    html: 'You’ve successfully registered.<br>Let’s roll!',
+                    icon: 'success', // You can use 'success', 'error', 'warning', 'info', 'question'
+                    confirmButtonText: 'Awesome!',
+                    // Custom animations and effects for SweetAlert2
+                    showClass: {
+                        popup: 'animate__animated animate__bounceInDown animate__fast', // Bounce In with a slight down-start
+                        icon: 'animate__animated animate__confetti' // Confetti effect for the icon
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutDown'
+                    },
+                    // You can also add custom class to the popup for more styling
+                    customClass: {
+                        popup: 'swal2-popup-custom'
+                    },
+                });
+
+                // Optionally clear the input field after successful submission
+                newsletterEmailInput.value = '';
+            })
+            .catch(error => {
+                console.error('Error submitting newsletter:', error);
+                // Show an error message to the user
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Something went wrong. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'Close'
+                });
+            });
+        });
+
+    </script>
 </body>
 </html>
