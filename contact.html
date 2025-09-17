@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Aftermarket Auto Parts</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .accent-bg-color {
+            background-color: #14FFFA; /* Matches the color of your 'SUBSCRIBE' button */
+        }
+        .social-icon-link {
+            display: inline-block;
+            transition: transform 0.2s ease-out, color 0.2s ease-out;
+        }
+        .social-icon-link:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* Pop-up (Modal) Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background-color: #1f2937; /* bg-gray-800 from your form */
+            color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #d1d5db; /* gray-400 */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-2 rounded-full shadow-lg">
+        <ul class="flex space-x-40">
+            <li><a href="index.html#about" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-white transition-colors">About</a></li>
+            <li><a href="index.html#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-white transition-colors">Parts</a></li>
+            <li><a href="index.html#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-white transition-colors">Gallery</a></li>
+            <li><a href="index.html#news" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-white transition-colors">News</a></li>
+            <li><a href="#" class="block py-2 px-4 rounded-full font-medium bg-orange-400 text-white">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center pt-20 pb-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gradient">Get In Touch</h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-12">We'd love to hear from you. Please fill out the form below to reach out.</p>
+
+            <form id="contact-form" action="#" method="POST" class="bg-gray-800 p-8 md:p-12 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required class="w-full bg-gray-700 text-white px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full bg-gray-700 text-white px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required class="w-full bg-gray-700 text-white px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                </div>
+                <div class="mb-2">
+                    <textarea id="message" name="message" rows="6" placeholder="Your Message" maxlength="500" required class="w-full bg-gray-700 text-white px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
+                </div>
+                <div class="text-right text-gray-400 text-sm mb-8">
+                    <span id="char-count">0</span>/500 characters
+                </div>
+                <button type="submit" class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity accent-bg-color">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section class="py-12 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-semibold mb-4 text-gradient">Stay Updated</h3>
+            <p class="text-lg text-gray-300 mb-6">Join our newsletter to get the latest news and updates.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <input type="email" placeholder="Enter your email address" class="bg-gray-700 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                <button class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity accent-bg-color">
+                    SUBSCRIBE
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-center items-center">
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 w-full">
+                    <p>&copy; 2024 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Message Sent!</h2>
+            <p class="text-gray-300 mb-6">Thank you for reaching out. We will review your message and get back to you shortly.</p>
+            <button id="modal-ok-btn" class="text-black px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity accent-bg-color">
+                OK
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Character count logic
+        const messageInput = document.getElementById('message');
+        const charCountDisplay = document.getElementById('char-count');
+
+        messageInput.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            charCountDisplay.textContent = currentLength;
+        });
+
+        // Pop-up and Redirect Logic
+        const contactForm = document.getElementById('contact-form');
+        const contactModal = document.getElementById('contact-modal');
+        const modalCloseBtn = document.querySelector('.modal-close');
+        const modalOkBtn = document.getElementById('modal-ok-btn');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            // Show the custom pop-up
+            contactModal.style.display = 'flex';
+        });
+
+        // Function to hide the pop-up and redirect
+        function hideModalAndRedirect() {
+            contactModal.style.display = 'none';
+            window.location.href = 'index.html';
+        }
+
+        // Add event listeners to the close button and "OK" button
+        modalCloseBtn.addEventListener('click', hideModalAndRedirect);
+        modalOkBtn.addEventListener('click', hideModalAndRedirect);
+    </script>
+
+</body>
+</html>
