@@ -131,7 +131,8 @@
     </div>
     
     <script>
-           // Character count logic
+          <script>
+    // Character count logic
     const messageInput = document.getElementById('message');
     const charCountDisplay = document.getElementById('char-count');
 
@@ -150,19 +151,39 @@
         event.preventDefault(); // Prevents the default form submission
 
         const scriptURL = contactForm.action;
-        const formData = new FormData(contactForm); // Gets all form data automatically
+        
+        // Use URLSearchParams to explicitly build the request body
+        const formData = new URLSearchParams();
+        formData.append('formType', 'contact');
+        formData.append('name', document.getElementById('name').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('subject', document.getElementById('subject').value);
+        formData.append('message', document.getElementById('message').value);
 
         fetch(scriptURL, {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString() // Convert URLSearchParams to a string for the body
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                // Check if the response is the expected "Success" text
+                return response.text().then(text => {
+                    if (text !== "Success") {
+                        throw new Error('Network response was not ok');
+                    }
+                    return text;
+                });
             }
+            return response.text();
+        })
+        .then(data => {
             // Show the custom success pop-up
             contactModal.style.display = 'flex';
-            // You can optionally add a success message to the modal here
+            // Reset the form fields
+            contactForm.reset();
         })
         .catch(error => {
             console.error('Error submitting form:', error);
@@ -180,10 +201,10 @@
     modalCloseBtn.addEventListener('click', hideModalAndRedirect);
     modalOkBtn.addEventListener('click', hideModalAndRedirect);
 </script>
-
 </body>
 
 </html>
+
 
 
 
