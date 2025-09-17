@@ -246,6 +246,48 @@
             50% { transform: scale(1.2); } /* Pulses larger */
             100% { transform: scale(1); }
         }
+
+        /* Custom SweetAlert2 styling to match the website theme */
+        .swal2-popup-custom {
+            background: #1f2937 !important;
+            color: white !important;
+            width: 350px !important; /* Adjust width for 30% smaller size */
+            max-width: 90% !important; /* Ensure responsiveness */
+            font-size: 0.9em !important; /* Slightly smaller font for better fit */
+        }
+        .swal2-title {
+            color: white !important;
+        }
+        .swal2-html-container {
+            color: #d1d5db !important;
+        }
+        .swal2-success-ring {
+            border-color: #14FFFA !important; /* Matches subscribe button color */
+        }
+        .swal2-success-line-long, .swal2-success-line-tip {
+            background-color: #14FFFA !important; /* Matches subscribe button color */
+        }
+        .swal2-styled.swal2-confirm {
+            background-color: #14FFFA !important; /* Matches subscribe button color */
+            color: #111827 !important; /* Dark text on the bright button */
+            font-weight: bold !important;
+        }
+        
+        /* Spinner animation for the button */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #14FFFA; /* Matches subscribe button color */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -255,7 +297,7 @@
             <li><a href="#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Parts</a></li>
             <li><a href="#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Gallery</a></li>
             <li><a href="#news" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">News</a></li>
-            <li><a href="#contact" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Contact</a></li>
+            <li><a href="https://jayzce.github.io/AftermarketAutoParts/contact.html" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Contact</a></li>
         </ul>
     </nav>
     
@@ -267,7 +309,7 @@
         
         <div class="relative z-10 text-center max-w-6xl mx-auto px-4 h-full flex flex-col justify-between py-16">
             <div class="flex-grow flex items-center justify-center flex-col">
-                  <h1 class="hero-text-animate">Upgrade. Outperform. Outshine.</h1>
+                    <h1 class="hero-text-animate">Upgrade. Outperform. Outshine.</h1>
             </div>
             
             <div class="flex justify-center">
@@ -463,8 +505,8 @@
                 
                 <form id="newsletter-form" action="https://script.google.com/macros/s/AKfycbz5lhGaXHudWg9l8TOf8L5A96ifRwKa_NQ81PhbIJVA6gLfPr7me6UB2lDEy9gg_WNXYg/exec" method="POST">
                     <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
-                        <input type="email" name="email" placeholder="Enter your email address" required class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                        <button type="submit" class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity" style="background-color: #14FFFA;">
+                        <input type="email" name="email" id="email-input" placeholder="Enter your email address" required class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        <button type="submit" id="submit-button" class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center" style="background-color: #14FFFA;">
                             SUBSCRIBE
                         </button>
                     </div>
@@ -492,7 +534,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-center items-center">
                 <div class="text-center text-gray-400">
-                    <p>&copy; 2024 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
+                    <p>&copy; 2025 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
                 </div>
             </div>
         </div>
@@ -503,11 +545,28 @@
     <script>
         // Newsletter Form Submission Handling
         const newsletterForm = document.getElementById('newsletter-form');
-        const newsletterEmailInput = newsletterForm.querySelector('input[name="email"]');
+        const newsletterEmailInput = document.getElementById('email-input');
+        const submitButton = document.getElementById('submit-button');
+        const originalButtonText = 'SUBSCRIBE';
 
+        function showProcessingState() {
+            newsletterEmailInput.disabled = true;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader"></div>';
+        }
+
+        function hideProcessingState() {
+            newsletterEmailInput.disabled = false;
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        }
+        
         newsletterForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
+            // Show the processing state
+            showProcessingState();
+            
             const email = newsletterEmailInput.value;
             const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
 
@@ -546,22 +605,28 @@
                         popup: 'swal2-popup-custom'
                     },
                 });
-
-                // Optionally clear the input field after successful submission
+                
+                // Hide the processing state and clear the input field
+                hideProcessingState();
                 newsletterEmailInput.value = '';
             })
             .catch(error => {
                 console.error('Error submitting newsletter:', error);
+                // Hide the processing state
+                hideProcessingState();
+
                 // Show an error message to the user
                 Swal.fire({
                     title: 'Oops!',
                     text: 'Something went wrong. Please try again later.',
                     icon: 'error',
-                    confirmButtonText: 'Close'
+                    confirmButtonText: 'Close',
+                    customClass: {
+                        popup: 'swal2-popup-custom'
+                    }
                 });
             });
         });
-
     </script>
 </body>
 </html>
