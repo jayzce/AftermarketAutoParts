@@ -130,40 +130,59 @@
     </div>
     
     <script>
-        // Character count logic
-        const messageInput = document.getElementById('message');
-        const charCountDisplay = document.getElementById('char-count');
+       <script>
+    // Character count logic
+    const messageInput = document.getElementById('message');
+    const charCountDisplay = document.getElementById('char-count');
 
-        messageInput.addEventListener('input', function() {
-            const currentLength = this.value.length;
-            charCountDisplay.textContent = currentLength;
-        });
+    messageInput.addEventListener('input', function() {
+        const currentLength = this.value.length;
+        charCountDisplay.textContent = currentLength;
+    });
 
-        // Pop-up and Redirect Logic
-        const contactForm = document.getElementById('contact-form');
-        const contactModal = document.getElementById('contact-modal');
-        const modalCloseBtn = document.querySelector('.modal-close');
-        const modalOkBtn = document.getElementById('modal-ok-btn');
+    // Form submission and Pop-up Logic
+    const contactForm = document.getElementById('contact-form');
+    const contactModal = document.getElementById('contact-modal');
+    const modalCloseBtn = document.querySelector('.modal-close');
+    const modalOkBtn = document.getElementById('modal-ok-btn');
 
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevents the default form submission
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
 
-            // Show the custom pop-up
+        const scriptURL = contactForm.action;
+        const formData = new FormData(contactForm); // Gets all form data automatically
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Show the custom success pop-up
             contactModal.style.display = 'flex';
+            // You can optionally add a success message to the modal here
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+            alert('Something went wrong. Please try again later.');
         });
+    });
 
-        // Function to hide the pop-up and redirect
-        function hideModalAndRedirect() {
-            contactModal.style.display = 'none';
-            window.location.href = 'index.html';
-        }
+    // Function to hide the pop-up and redirect
+    function hideModalAndRedirect() {
+        contactModal.style.display = 'none';
+        window.location.href = 'index.html';
+    }
 
-        // Add event listeners to the close button and "OK" button
-        modalCloseBtn.addEventListener('click', hideModalAndRedirect);
-        modalOkBtn.addEventListener('click', hideModalAndRedirect);
-    </script>
+    // Add event listeners to the close button and "OK" button
+    modalCloseBtn.addEventListener('click', hideModalAndRedirect);
+    modalOkBtn.addEventListener('click', hideModalAndRedirect);
+</script>
 
 </body>
 
 </html>
+
 
