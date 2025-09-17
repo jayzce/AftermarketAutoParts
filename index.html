@@ -545,90 +545,90 @@
 
     <script>
         // Newsletter Form Submission Handling
-        const newsletterForm = document.getElementById('newsletter-form');
-        const newsletterEmailInput = document.getElementById('email-input');
-        const submitButton = document.getElementById('submit-button');
-        const originalButtonText = 'SUBSCRIBE';
+const newsletterForm = document.getElementById('newsletter-form');
+const newsletterEmailInput = document.getElementById('email-input');
+const submitButton = document.getElementById('submit-button');
+const originalButtonText = 'SUBSCRIBE';
 
-        function showProcessingState() {
-            newsletterEmailInput.disabled = true;
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<div class="loader"></div>';
+function showProcessingState() {
+    newsletterEmailInput.disabled = true;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<div class="loader"></div>';
+}
+
+function hideProcessingState() {
+    newsletterEmailInput.disabled = false;
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonText;
+}
+
+newsletterForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Show the processing state
+    showProcessingState();
+
+    const email = newsletterEmailInput.value;
+    const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
+    
+    // Create a new URLSearchParams object to easily handle form data
+    const formData = new URLSearchParams();
+    formData.append('email', email);
+    formData.append('formType', 'newsletter'); // Append the formType here
+    
+    // Use fetch API to send data to the Google Apps Script web app
+    fetch(scriptURL, {
+        method: 'POST',
+        body: formData // Send the formData object
+    })
+    .then(response => {
+        if (!response.ok) {
+            // Handle server errors (e.g., script not deployed, incorrect URL)
+            throw new Error('Network response was not ok');
         }
-
-        function hideProcessingState() {
-            newsletterEmailInput.disabled = false;
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonText;
-        }
-        
-        newsletterForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Show the processing state
-            showProcessingState();
-            
-            const email = newsletterEmailInput.value;
-            const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
-
-            // Use fetch API to send data to the Google Apps Script web app
-            fetch(scriptURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `email=${encodeURIComponent(email)}` // Send email data
-            })
-            .then(response => {
-                if (!response.ok) {
-                    // Handle server errors (e.g., script not deployed, incorrect URL)
-                    throw new Error('Network response was not ok');
-                }
-                return response.text(); // Or response.json() if your script returns JSON
-            })
-            .then(data => {
-                // Success! Show the animated pop-up message.
-                Swal.fire({
-                    title: 'Boom!',
-                    html: 'You’ve successfully registered.<br>Let’s roll!',
-                    icon: 'success', // You can use 'success', 'error', 'warning', 'info', 'question'
-                    confirmButtonText: 'Awesome!',
-                    // Custom animations and effects for SweetAlert2
-                    showClass: {
-                        popup: 'animate__animated animate__bounceInDown animate__fast', // Bounce In with a slight down-start
-                        icon: 'animate__animated animate__confetti' // Confetti effect for the icon
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutDown'
-                    },
-                    // You can also add custom class to the popup for more styling
-                    customClass: {
-                        popup: 'swal2-popup-custom'
-                    },
-                });
-                
-                // Hide the processing state and clear the input field
-                hideProcessingState();
-                newsletterEmailInput.value = '';
-            })
-            .catch(error => {
-                console.error('Error submitting newsletter:', error);
-                // Hide the processing state
-                hideProcessingState();
-
-                // Show an error message to the user
-                Swal.fire({
-                    title: 'Oops!',
-                    text: 'Something went wrong. Please try again later.',
-                    icon: 'error',
-                    confirmButtonText: 'Close',
-                    customClass: {
-                        popup: 'swal2-popup-custom'
-                    }
-                });
-            });
+        return response.text();
+    })
+    .then(data => {
+        // Success! Show the animated pop-up message.
+        Swal.fire({
+            title: 'Boom!',
+            html: 'You’ve successfully registered.<br>Let’s roll!',
+            icon: 'success',
+            confirmButtonText: 'Awesome!',
+            showClass: {
+                popup: 'animate__animated animate__bounceInDown animate__fast',
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutDown'
+            },
+            customClass: {
+                popup: 'swal2-popup-custom'
+            },
         });
+
+        // Hide the processing state and clear the input field
+        hideProcessingState();
+        newsletterEmailInput.value = '';
+    })
+    .catch(error => {
+        console.error('Error submitting newsletter:', error);
+        // Hide the processing state
+        hideProcessingState();
+
+        // Show an error message to the user
+        Swal.fire({
+            title: 'Oops!',
+            text: 'Something went wrong. Please try again later.',
+            icon: 'error',
+            confirmButtonText: 'Close',
+            customClass: {
+                popup: 'swal2-popup-custom'
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
+
 
