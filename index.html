@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aftermarket Auto Parts - Premium Performance Parts</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
@@ -461,36 +461,7 @@
             }
         }
 
-    
-/* Fix hero image layering */
-.hero-bg-image { z-index: 0; }
-.hero-section > .absolute { z-index: 1; }
-.hero-content { z-index: 2; }
-
-/* Fix mobile navbar visibility */
-@media (max-width: 767px) {
-    .nav-container {
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-    .mobile-menu a {
-        color: white;
-    }
-}
-
-
-/* Ensure hero image fully covers mobile screen */
-.hero-bg-image {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    opacity: 0.6 !important;
-    z-index: 0 !important;
-}
-
-</style>
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Mobile-Responsive Navigation -->
