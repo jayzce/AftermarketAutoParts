@@ -461,7 +461,23 @@
             }
         }
 
-    </style>
+    
+/* Fix hero image layering */
+.hero-bg-image { z-index: 0; }
+.hero-section > .absolute { z-index: 1; }
+.hero-content { z-index: 2; }
+
+/* Fix mobile navbar visibility */
+@media (max-width: 767px) {
+    .nav-container {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+    .mobile-menu a {
+        color: white;
+    }
+}
+
+</style>
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Mobile-Responsive Navigation -->
