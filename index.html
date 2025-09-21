@@ -33,6 +33,100 @@
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
         }
 
+        /* Mobile-First Navigation */
+        .nav-container {
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 1rem 1rem;
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* Desktop Navigation */
+        @media (min-width: 768px) {
+            .desktop-menu {
+                display: flex;
+            }
+            .mobile-menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 767px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .nav-container {
+                left: 1rem;
+                right: 1rem;
+                transform: none;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        /* Hero Section Mobile Optimizations */
+        .hero-section {
+            min-height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for mobile */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 4rem 1rem;
+        }
+
         /* 3D Flip Card CSS */
         .flip-card {
             background-color: transparent;
@@ -106,16 +200,71 @@
             z-index: 1;
         }
         
-        /* Bento Box Layout from user's request */
+        /* Bento Box Layout - Mobile First */
         .bento-container {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            grid-template-rows: 1fr 1.5fr 1fr;
             gap: 16px;
             max-width: 1200px;
             margin: 0 auto;
-            height: 80vh;
-            min-height: 600px;
+            padding: 0 1rem;
+        }
+
+        /* Mobile Layout - Single column */
+        @media (max-width: 767px) {
+            .bento-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(8, 200px);
+            }
+            
+            .bento-item {
+                grid-column: 1;
+            }
+            
+            .item-1 { grid-row: 1; }
+            .item-2 { grid-row: 2; }
+            .item-3 { grid-row: 3; }
+            .item-4 { grid-row: 4; }
+            .item-5 { grid-row: 5; }
+            .item-6 { grid-row: 6; }
+            .item-7 { grid-row: 7; }
+            .item-8 { grid-row: 8; }
+        }
+
+        /* Tablet Layout */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .bento-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(5, 250px);
+            }
+            
+            .item-1 { grid-column: 1; grid-row: 1; }
+            .item-2 { grid-column: 2; grid-row: 1; }
+            .item-3 { grid-column: 1 / 3; grid-row: 2; }
+            .item-4 { grid-column: 1; grid-row: 3; }
+            .item-5 { grid-column: 2; grid-row: 3; }
+            .item-6 { grid-column: 1; grid-row: 4; }
+            .item-7 { grid-column: 2; grid-row: 4; }
+            .item-8 { grid-column: 1 / 3; grid-row: 5; }
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 1024px) {
+            .bento-container {
+                grid-template-columns: 1fr 2fr 1fr;
+                grid-template-rows: 1fr 1.5fr 1fr;
+                height: 80vh;
+                min-height: 600px;
+                padding: 0;
+            }
+            
+            .item-1 { grid-column: 1 / 2; grid-row: 1 / 2; }
+            .item-2 { grid-column: 2 / 3; grid-row: 1 / 2; }
+            .item-3 { grid-column: 3 / 4; grid-row: 1 / 3; }
+            .item-4 { grid-column: 1 / 2; grid-row: 2 / 3; }
+            .item-5 { grid-column: 2 / 3; grid-row: 2 / 3; }
+            .item-6 { grid-column: 3 / 4; grid-row: 3 / 4; }
+            .item-7 { grid-column: 1 / 2; grid-row: 3 / 4; }
+            .item-8 { grid-column: 2 / 3; grid-row: 3 / 4; }
         }
 
         .bento-item {
@@ -155,56 +304,25 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .item-1 { grid-column: 1 / 2; grid-row: 1 / 2; }
-        .item-2 { grid-column: 2 / 3; grid-row: 1 / 2; }
-        .item-3 { grid-column: 3 / 4; grid-row: 1 / 3; }
-        .item-4 { grid-column: 1 / 2; grid-row: 2 / 3; }
-        .item-5 { grid-column: 2 / 3; grid-row: 2 / 3; }
-        .item-6 { grid-column: 3 / 4; grid-row: 3 / 4; }
-        .item-7 { grid-column: 1 / 2; grid-row: 3 / 4; }
-        .item-8 { grid-column: 2 / 3; grid-row: 3 / 4; }
-
-        /* Responsive adjustments for new layout */
-        @media (max-width: 768px) {
-            .bento-container {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
-                height: auto;
-                min-height: auto;
-            }
-            
-            .item-1, .item-2, .item-4, .item-5, .item-6, .item-7, .item-8 {
-                grid-column: span 1;
-                grid-row: auto;
-            }
-            
-            .item-3 {
-                grid-column: 1 / 3;
-                grid-row: auto;
-            }
-            .bento-item {
-                height: 200px;
-            }
-        }
-        
-        /* Hero Text Animation CSS */
+        /* Hero Text Animation CSS - Mobile Responsive */
         .hero-text-animate {
             position: relative;
             font-family: sans-serif;
             text-transform: uppercase;
-            font-size: 3rem; /* 48px */
-            letter-spacing: 4px;
+            font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
+            letter-spacing: 2px;
             overflow: hidden;
             background: linear-gradient(90deg, #000, #fff, #000);
             background-repeat: no-repeat;
             background-size: 80%;
-            animation: animate 17s linear infinite; /* Increased duration for delay */
+            animation: animate 17s linear infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: rgba(255, 255, 255, 0);
             line-height: 1.2;
             text-align: center;
             margin-bottom: 2rem;
             font-weight: 700;
+            padding: 0 1rem;
         }
 
         @keyframes animate {
@@ -219,9 +337,49 @@
             }
         }
 
-        @media (max-width: 768px) {
+        /* Mobile Specific Adjustments */
+        @media (max-width: 767px) {
             .hero-text-animate {
-                font-size: 2rem; /* 32px */
+                letter-spacing: 1px;
+                font-size: clamp(1.2rem, 6vw, 2rem);
+                margin-bottom: 1rem;
+            }
+            
+            /* Mobile Gallery Grid */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            /* Mobile flip cards - disable flip on mobile for better UX */
+            .flip-card:hover .flip-card-inner {
+                transform: none;
+            }
+            
+            /* Show content directly on mobile */
+            .flip-card-mobile-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+                color: white;
+                padding: 1rem;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tablet Adjustments */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop Gallery */
+        @media (min-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -288,101 +446,136 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Mobile Form Adjustments */
+        @media (max-width: 767px) {
+            .newsletter-form-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .newsletter-form-container input[type="email"] {
+                width: 100%;
+            }
+            
+            .newsletter-form-container button {
+                width: 100%;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-gray-900 text-white">
-    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-2 rounded-full shadow-lg">
-        <ul class="flex space-x-4">
-            <li><a href="#about" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">About</a></li>
-            <li><a href="#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Parts</a></li>
-            <li><a href="#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Gallery</a></li>
-            <li><a href="#news" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">News</a></li>
-            <li><a href="https://jayzce.github.io/AftermarketAutoParts/contact.html" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Contact</a></li>
-        </ul>
-    </nav>
-    
-    <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/SnapInsta.to_473693028_1809552903200069_61090058520546877_n.jpg?raw=true" alt="Performance Vehicle" class="w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
+    <!-- Mobile-Responsive Navigation -->
+    <nav class="fixed top-4 left-4 right-4 md:left-1/2 md:transform md:-translate-x-1/2 md:right-auto z-50 nav-container p-2 rounded-full shadow-lg">
+        <div class="flex items-center justify-between">
+            <!-- Desktop Menu -->
+            <ul class="desktop-menu space-x-40">
+                <li><a href="#about" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">About</a></li>
+                <li><a href="#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Parts</a></li>
+                <li><a href="#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Gallery</a></li>
+                <li><a href="#news" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">News</a></li>
+                <li><a href="https://jayzce.github.io/AftermarketAutoParts/contact.html" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Contact</a></li>
+            </ul>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
         
-        <div class="relative z-10 text-center max-w-6xl mx-auto px-4 h-full flex flex-col justify-between py-16">
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="flex flex-col space-y-2">
+                <li><a href="#about" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">About</a></li>
+                <li><a href="#parts" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Parts</a></li>
+                <li><a href="#gallery" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Gallery</a></li>
+                <li><a href="#news" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">News</a></li>
+                <li><a href="https://jayzce.github.io/AftermarketAutoParts/contact.html" class="block py-2 px-4 rounded-full font-medium hover:bg-orange-400 hover:text-black transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Mobile-Optimized Hero Section -->
+    <section class="hero-section hero-gradient">
+        <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/SnapInsta.to_473693028_1809552903200069_61090058520546877_n.jpg?raw=true" alt="Performance Vehicle" class="hero-bg-image">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
+        
+        <div class="hero-content max-w-6xl mx-auto text-center">
             <div class="flex-grow flex items-center justify-center flex-col">
-                    <h1 class="hero-text-animate">Upgrade. Outperform. Outshine.</h1>
+                <h1 class="hero-text-animate">Upgrade. Outperform. Outshine.</h1>
             </div>
             
             <div class="flex justify-center">
-                <a href="https://popl.co/card/VCg0t2ea/2/dash" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors">
+                <a href="https://popl.co/card/VCg0t2ea/2/dash" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-orange-400 text-orange-400 px-6 md:px-8 py-3 rounded-full font-semibold hover:bg-orange-400 hover:text-black transition-colors text-sm md:text-base">
                     START YOUR BUILD!
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20">
+    <section id="about" class="py-12 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gradient">ABOUT US</h2>
-            <div class="text-lg text-gray-300 text-center max-w-4xl mx-auto">
-                <p class="mb-6">Our story began with a passion passed down from father to son. Growing up, weekends often meant going to car shows with my dad where I discovered the beauty, power, and culture of cars.</p>
-                <p class="mb-6">That passion took a new direction when my dad bought a 1999 Ford F-150. At the time, finding OEM and aftermarket parts in the Philippines was a real challenge. Driven by the need to keep our truck running and looking its best, I began importing parts myself. Soon, friends and fellow car enthusiasts started asking me to source parts for them too.</p>
-                <p class="mb-6">What began as a simple hustle quickly grew through word of mouth. Today, that same passion and dedication has transformed into a trusted business committed to providing high-quality OEM and aftermarket parts that help car owners restore, customize, and elevate their rides.</p>
-                <p class="mb-6">At the heart of it all is the same love for cars that started years ago, a love that drives us to bring only the best for fellow enthusiasts like you.</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 text-gradient">ABOUT US</h2>
+            <div class="text-base md:text-lg text-gray-300 text-center max-w-4xl mx-auto">
+                <p class="mb-4 md:mb-6">Our story began with a passion passed down from father to son. Growing up, weekends often meant going to car shows with my dad where I discovered the beauty, power, and culture of cars.</p>
+                <p class="mb-4 md:mb-6">That passion took a new direction when my dad bought a 1999 Ford F-150. At the time, finding OEM and aftermarket parts in the Philippines was a real challenge. Driven by the need to keep our truck running and looking its best, I began importing parts myself. Soon, friends and fellow car enthusiasts started asking me to source parts for them too.</p>
+                <p class="mb-4 md:mb-6">What began as a simple hustle quickly grew through word of mouth. Today, that same passion and dedication has transformed into a trusted business committed to providing high-quality OEM and aftermarket parts that help car owners restore, customize, and elevate their rides.</p>
+                <p class="mb-4 md:mb-6">At the heart of it all is the same love for cars that started years ago, a love that drives us to bring only the best for fellow enthusiasts like you.</p>
             </div>
         </div>
     </section>
 
-    <section id="parts" class="py-20 bg-black">
+    <section id="parts" class="py-12 md:py-20 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">PERFORMANCE CATEGORIES</h2>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-16 text-gradient">PERFORMANCE CATEGORIES</h2>
             
             <div class="bento-container">
                 
                 <div class="bento-item item-1 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/RaceChip%20ECU.png?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">ECU TUNING</h3>
+                        <h3 class="text-xl md:text-2xl">ECU TUNING</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-2 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Forged%20Wheels.png?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">FORGED WHEELS</h3>
+                        <h3 class="text-xl md:text-2xl">FORGED WHEELS</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-3 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/HR%20Springs.jpg?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">SUSPENSION</h3>
+                        <h3 class="text-xl md:text-2xl">SUSPENSION</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-4 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Cold%20Air%20Intake.webp?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">COLD AIR INTAKE</h3>
+                        <h3 class="text-xl md:text-2xl">COLD AIR INTAKE</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-5 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Audi%20RS6.jpg?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">AERO & BODY KITS</h3>
+                        <h3 class="text-xl md:text-2xl">AERO & BODY KITS</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-6 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Big%20Brake%20Kit%20Red.jpg?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">BRAKE SYSTEMS</h3>
+                        <h3 class="text-xl md:text-2xl">BRAKE SYSTEMS</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-7 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Gauges.jpg?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">GAUGES</h3>
+                        <h3 class="text-xl md:text-2xl">GAUGES</h3>
                     </div>
                 </div>
 
                 <div class="bento-item item-8 bg-gray-900" style="background-image: url('https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Exhaust%20System.jpg?raw=true')">
                     <div class="overlay">
-                        <h3 class="text-2xl">EXHAUST SYSTEM</h3>
+                        <h3 class="text-xl md:text-2xl">EXHAUST SYSTEM</h3>
                     </div>
                 </div>
 
@@ -391,15 +584,20 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-20 bg-black">
+    <section id="gallery" class="py-12 md:py-20 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">FEATURED BUILDS</h2>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-16 text-gradient">FEATURED BUILDS</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid gallery-grid gap-4 md:gap-8">
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Rnage%20Rover.jpg?raw=true" alt="Aftermarket Range Rover" class="w-full h-full object-cover">
+                            <!-- Mobile content overlay -->
+                            <div class="flip-card-mobile-content md:hidden">
+                                <h3 class="text-lg font-bold mb-2">Range Rover SV</h3>
+                                <p class="text-sm text-gray-300">1016 Bodykit • 3-Piece Forged Wheels • Performance Exhaust</p>
+                            </div>
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Range Rover SV</h3>
@@ -415,6 +613,10 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/AMG%20G63%20Urban.jpg?raw=true" alt="Aftermarket Mercedes Urban G63" class="w-full h-full object-cover">
+                            <div class="flip-card-mobile-content md:hidden">
+                                <h3 class="text-lg font-bold mb-2">Mercedes G63 AMG</h3>
+                                <p class="text-sm text-gray-300">Carbon Fibre Bullnose Bonnet • Urban Icon Front Grille • Forged Wheels</p>
+                            </div>
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Mercedes G63 AMG</h3>
@@ -422,7 +624,7 @@
                                 <li>Carbon Fibre Bullnose Bonnet</li>
                                 <li>Urban Icon Front Grille Center Badge</li>
                                 <li>Urban X Vossen Forged Wheels</li>
-                                <li>Milltek Sport Peroformance Exhaust</li>
+                                <li>Milltek Sport Performance Exhaust</li>
                                 <li>Wing Mirrors Carbon Fibre Twill</li>
                             </ul>
                         </div>
@@ -432,9 +634,13 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <img src="https://raw.githubusercontent.com/jayzce/AutoFirm/main/Assets/Cullinan%201016.jpg?raw=true" alt="Aftermarket Rolls Royce Cullinan" class="w-full h-full object-cover">
+                            <div class="flip-card-mobile-content md:hidden">
+                                <h3 class="text-lg font-bold mb-2">Rolls Royce Cullinan</h3>
+                                <p class="text-sm text-gray-300">1016 Aero Kit • Forged Monoblock Wheels • Bespoke Interior</p>
+                            </div>
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
-                            <h3 class="text-2xl font-bold mb-4">Roll Royce Cullinan</h3>
+                            <h3 class="text-2xl font-bold mb-4">Rolls Royce Cullinan</h3>
                             <ul class="text-gray-300 space-y-2">
                                 <li>1016 Aero Kit</li>
                                 <li>Forged Monoblock Wheels</li>
@@ -447,6 +653,10 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Urus%201016.jpg?raw=true" alt="Aftermarket Lamborghini Urus" class="w-full h-full object-cover">
+                            <div class="flip-card-mobile-content md:hidden">
+                                <h3 class="text-lg font-bold mb-2">Lamborghini Urus</h3>
+                                <p class="text-sm text-gray-300">1016 Bodykit • Forged Wheels • Custom Interior • Titanium Exhaust</p>
+                            </div>
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Lamborghini Urus</h3>
@@ -463,6 +673,10 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/911%20Manthey.jpg?raw=true" alt="Aftermarket GT3 RS" class="w-full h-full object-cover">
+                            <div class="flip-card-mobile-content md:hidden">
+                                <h3 class="text-lg font-bold mb-2">Porsche 911 GT3 RS</h3>
+                                <p class="text-sm text-gray-300">1016 Carbon Bodykit • Forged Wheels • Manthey Coilover Kit</p>
+                            </div>
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Porsche 911 GT3 RS</h3>
@@ -480,6 +694,10 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <img src="https://raw.githubusercontent.com/jayzce/AftermarketAutoParts/main/Assets/Urabn%20D110.jpg?raw=true" alt="Aftermarket Defender" class="w-full h-full object-cover">
+                            <div class="flip-card-mobile-content md:hidden">
+                                <h3 class="text-lg font-bold mb-2">Land Rover Defender D110</h3>
+                                <p class="text-sm text-gray-300">Urban Widetrack Kit • Urban Vossen Wheels • LED Roof Light Bar</p>
+                            </div>
                         </div>
                         <div class="flip-card-back bg-gray-800 p-6 flex flex-col justify-center">
                             <h3 class="text-2xl font-bold mb-4">Land Rover Defender D110</h3>
@@ -497,21 +715,21 @@
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-black">
+    <section id="contact" class="py-12 md:py-20 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">STAY CONNECTED</h2>
-                <p class="text-xl text-gray-300 px-4 mb-8">Subscribe to receive the latest Aftermarket Auto Parts news, events, product information, and more.</p>
+            <div class="text-center mb-8 md:mb-12">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-gradient">STAY CONNECTED</h2>
+                <p class="text-lg md:text-xl text-gray-300 px-4 mb-6 md:mb-8">Subscribe to receive the latest Aftermarket Auto Parts news, events, product information, and more.</p>
                 
                 <form id="newsletter-form" action="https://script.google.com/macros/s/AKfycbz5lhGaXHudWg9l8TOf8L5A96ifRwKa_NQ81PhbIJVA6gLfPr7me6UB2lDEy9gg_WNXYg/exec" method="POST">
-    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
-        <input type="email" name="email" id="email-input" placeholder="Enter your email address" required class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
-        <input type="hidden" name="formType" value="newsletter">
-        <button type="submit" id="submit-button" class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center" style="background-color: #14FFFA;">
-            SUBSCRIBE
-        </button>
-    </div>
-</form>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8 md:mb-12 newsletter-form-container">
+                        <input type="email" name="email" id="email-input" placeholder="Enter your email address" required class="bg-gray-800 text-white px-6 py-3 rounded-full w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        <input type="hidden" name="formType" value="newsletter">
+                        <button type="submit" id="submit-button" class="text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center w-full sm:w-auto" style="background-color: #14FFFA;">
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </form>
             </div>
             
             <div class="flex justify-center space-x-6">
@@ -531,11 +749,11 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 py-12">
+    <footer class="bg-gray-900 py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-center items-center">
                 <div class="text-center text-gray-400">
-                    <p>&copy; 2025 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
+                    <p class="text-sm md:text-base">&copy; 2025 Aftermarket Auto Parts. All rights reserved. | Privacy Policy | Terms of Service</p>
                 </div>
             </div>
         </div>
@@ -544,93 +762,140 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
     <script>
-        // Newsletter Form Submission Handling
-const newsletterForm = document.getElementById('newsletter-form');
-const newsletterEmailInput = document.getElementById('email-input');
-const submitButton = document.getElementById('submit-button');
-const originalButtonText = 'SUBSCRIBE';
-
-function showProcessingState() {
-    newsletterEmailInput.disabled = true;
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<div class="loader"></div>';
-}
-
-function hideProcessingState() {
-    newsletterEmailInput.disabled = false;
-    submitButton.disabled = false;
-    submitButton.innerHTML = originalButtonText;
-}
-
-newsletterForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Show the processing state
-    showProcessingState();
-
-    const email = newsletterEmailInput.value;
-    const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
-    
-    // Create a new URLSearchParams object to easily handle form data
-    const formData = new URLSearchParams();
-    formData.append('email', email);
-    formData.append('formType', 'newsletter'); // Append the formType here
-    
-    // Use fetch API to send data to the Google Apps Script web app
-    fetch(scriptURL, {
-        method: 'POST',
-        body: formData // Send the formData object
-    })
-    .then(response => {
-        if (!response.ok) {
-            // Handle server errors (e.g., script not deployed, incorrect URL)
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data => {
-        // Success! Show the animated pop-up message.
-        Swal.fire({
-            title: 'Boom!',
-            html: 'You’ve successfully registered.<br>Let’s roll!',
-            icon: 'success',
-            confirmButtonText: 'Awesome!',
-            showClass: {
-                popup: 'animate__animated animate__bounceInDown animate__fast',
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutDown'
-            },
-            customClass: {
-                popup: 'swal2-popup-custom'
-            },
-        });
-
-        // Hide the processing state and clear the input field
-        hideProcessingState();
-        newsletterEmailInput.value = '';
-    })
-    .catch(error => {
-        console.error('Error submitting newsletter:', error);
-        // Hide the processing state
-        hideProcessingState();
-
-        // Show an error message to the user
-        Swal.fire({
-            title: 'Oops!',
-            text: 'Something went wrong. Please try again later.',
-            icon: 'error',
-            confirmButtonText: 'Close',
-            customClass: {
-                popup: 'swal2-popup-custom'
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
-    });
-});
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Newsletter Form Submission Handling
+        const newsletterForm = document.getElementById('newsletter-form');
+        const newsletterEmailInput = document.getElementById('email-input');
+        const submitButton = document.getElementById('submit-button');
+        const originalButtonText = 'SUBSCRIBE';
+
+        function showProcessingState() {
+            newsletterEmailInput.disabled = true;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader"></div>';
+        }
+
+        function hideProcessingState() {
+            newsletterEmailInput.disabled = false;
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        }
+
+        newsletterForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Show the processing state
+            showProcessingState();
+
+            const email = newsletterEmailInput.value;
+            const scriptURL = newsletterForm.action; // Get the Apps Script URL from the form action
+            
+            // Create a new URLSearchParams object to easily handle form data
+            const formData = new URLSearchParams();
+            formData.append('email', email);
+            formData.append('formType', 'newsletter'); // Append the formType here
+            
+            // Use fetch API to send data to the Google Apps Script web app
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData // Send the formData object
+            })
+            .then(response => {
+                if (!response.ok) {
+                    // Handle server errors (e.g., script not deployed, incorrect URL)
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Success! Show the animated pop-up message.
+                Swal.fire({
+                    title: 'Boom!',
+                    html: 'You've successfully registered.<br>Let's roll!',
+                    icon: 'success',
+                    confirmButtonText: 'Awesome!',
+                    showClass: {
+                        popup: 'animate__animated animate__bounceInDown animate__fast',
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutDown'
+                    },
+                    customClass: {
+                        popup: 'swal2-popup-custom'
+                    },
+                });
+
+                // Hide the processing state and clear the input field
+                hideProcessingState();
+                newsletterEmailInput.value = '';
+            })
+            .catch(error => {
+                console.error('Error submitting newsletter:', error);
+                // Hide the processing state
+                hideProcessingState();
+
+                // Show an error message to the user
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Something went wrong. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'Close',
+                    customClass: {
+                        popup: 'swal2-popup-custom'
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
